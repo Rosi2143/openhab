@@ -1,0 +1,47 @@
+Group    Home                     "Our Home"            <house>                                      ["Building"]
+
+Group    C                        "Keller"              <cellar>        (Home)                       ["Basement"]
+Group    GF                       "Erdgeschoss"         <groundfloor>   (Home)                       ["GroundFloor"]
+Group    FF                       "Erster Stock"        <firstfloor>    (Home)                       ["FirstFloor"]
+Group    F2                       "Zweiter Stock"       <attic>         (Home)                       ["Attic"]
+
+Group    GF_Kitchen               "Küche"               <kitchen>       (Home, GF)                   ["Kitchen"]
+Group    FF_Office                "Büro"                <office>        (Home, FF)                   ["Room"]
+Group    FF_MasterBedroom         "Hauptschlafzimmer"   <bedroom_red>   (Home, FF)                   ["Bedroom"]
+Group    F2_Bedroom               "Schlafzimmer"        <bedroom>       (Home, F2)                   ["Bedroom"]
+Group    C_Werkraum               "Werkraum"            <none>          (Home, C)
+
+Number   GF_Temp1    "Temperatur"          <temperature>   (GF_Kitchen, gTemperature)   ["Temperature [%.1f °C]"]        {channel="hue:0302:a2743755:temperature"}
+Number   GF_Temp2    "Temperatur"          <temperature>   (GF_Kitchen, gTemperature)   ["Temperature [%.1f °C]"]        {channel="hue:0302:69c43aea:temperature"}
+Number   GF_Temp1_Bat  "Batterie"          <number>   (GF_Kitchen, gTemperature)   ["Batterie"]        {channel="hue:0302:a2743755:battery_level"}
+Number   GF_Temp2_Bat  "Batterie"          <number>   (GF_Kitchen, gTemperature)   ["Batterie"]        {channel="hue:0302:69c43aea:battery_level"}
+Number   GF_Temp1_Last "Temperatur"   <number>      (GF_Kitchen, gTemperature)   ["Aktualisierung"] {channel="hue:0302:a2743755:last_updated"}
+Number   GF_Temp2_Last "LetzteAktualisierung"   <number>   (GF_Kitchen, gTemperature)   ["Aktualisierung"]     {channel="hue:0302:69c43aea:last_updated"}
+
+/* Lampe Büro */
+Switch   1FF_Office_Color       "Büro Ein/Aus_rgb"        <light>         (FF_Office,gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:00212E0488C9:1:color"}
+Color    1FF_Office_Color_rgb   "Büro"        <light>         (FF_Office, gLight)      ["Lighting", "ColorLighting"]   {channel="hue:0210:00212E0488C9:1:color"}
+Dimmer   1FF_Office_Color_dim   "Büro_hell"        <light>        (FF_Office)      ["Lighting", "Switchable"]   {channel="hue:0210:00212E0488C9:1:color"}
+
+/* Schlafzimmer LuTH    */
+Switch   FF_LuTh_Color         "Lu+Th Ein/Aus"      <light>         (FF_MasterBedroom, gLight)      ["ColorLighting", "ColorLighting"]  {channel="hue:0210:0017886beb3c:2:color"}
+Color    FF_LuTh_Color_rgb     "Lu+Th"      <light>         (FF_MasterBedroom, gLight)      ["ColorLighting", "ColorLighting"]  {channel="hue:0210:0017886beb3c:2:color"}
+Dimmer   FF_LuTh_Color_dim     "Lu+Th"        <light>        (FF_MasterBedroom, gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:0017886beb3c:2:color"}
+/*
+Schlafzimmer Simon 
+Switch   F2_Simon_Color         "Simon Ein/Aus"      <light>         (F2_Bedroom, gLight)      ["ColorLighting", "ColorLighting"]  {channel="hue:0210:0017886beb3c:1:color"}
+Color    F2_Simon_Color_rgb     "Simon"        <light>         (F2_Bedroom, gLight)       ["ColorLighting", "ColorLighting"]  {channel="hue:0210:0017886beb3c:1:color"}
+Dimmer   F2_Simon_Color_dim     "Simon"        <light>        (F2_Bedroom, gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:0017886beb3c:1:color"}
+*/
+
+Switch   GF_Kitchen_Radio         "Radio"               <none>          (GF_Kitchen, gRadio)                                      {channel=""}
+
+Switch   FF_Office_Drucker        "Drucker"             <none>          (FF_Office, gDrucker)                                     {channel=""}
+
+Switch   C_Werkraum_Radio         "Radio"               <none>          (C_Werkraum, gRadio)                                      {channel=""}
+
+Group:Number:AVG           gTemperature   "Temperatur"   <temperature>   (Home)   ["Temperature"]
+Group:Switch:OR(ON, OFF)   gRadio         "Radio"        <none>          (Home)
+Group:Switch:OR(ON, OFF)   gLight         "Licht"        <light>         (Home)   ["Lighting", "Switchable"]
+Group:Switch:OR(ON, OFF)   gDrucker       "Drucker"      <none>          (Home)
+

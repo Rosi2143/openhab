@@ -1,0 +1,44 @@
+var Timer TimerH = null
+
+rule "Alarm Simon"
+when
+    Item AlarmSimon changed to ON
+then
+SimonSNestMini_Fernbedienung.sendCommand(PLAY)
+SimonNestPlayURI.sendCommand("http://192.168.1.92:8080/static/Daddy.mp3")
+
+if(TimerH !== null) {
+    TimerH.cancel
+    TimerH = null
+}
+
+TimerH = createTimer(now.plusSeconds(1)) [
+    if(AlarmSimon.state==ON){
+       if (F2_SimonIK.state==ON){ 
+          F2_SimonIK.sendCommand(OFF) 
+         }
+       if (F2_SimonIK.state==OFF){ 
+          F2_SimonIK.sendCommand(ON)           
+       }
+      
+    }
+    TimerH.reschedule(now.plusSeconds(1))
+]
+end
+
+rule "Automatische Alarmabschaltung"
+when
+    Item AlarmSimon changed to OFF
+then
+    AlarmSimon.sendCommand(OFF)
+    SimonSNestMini_Fernbedienung.sendCommand(PAUSE)
+if(TimerH !== null) {
+   TimerH.cancel
+   TimerH = null
+}
+end
+
+
+
+
+

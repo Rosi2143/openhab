@@ -1,0 +1,133 @@
+<div class="section">
+	
+  <div class="sectionIconContainer"></div>
+  
+	<div class="controls">
+		<div class="widget">	                  
+			<div class="appLogo"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/matrixicons.svg"></use></div>               	                                     
+			<div class="music">    
+         <div class="track">{{itemValue('SqueezeLite_Title')}}, {{itemValue('SqueezeLite_Artist')}}</div>
+        <div class="cover" ng-style="{'background-image': 'url(' + itemValue('SqueezeLite_CoverArt') + ')'}"></div>		     
+        <div class="control" ng-click="sendCmd('SqueezeLite_Control', 'PLAY')" ng-if="itemValue('SqueezeLite_Control')!='PLAY'"><svg viewBox="0 0 80 80"><use xlink:href="/static/matrix-theme/Control & Navigation_pause.svg#pause"></use></svg></div>
+        <div class="control" ng-click="sendCmd('SqueezeLite_Control','PAUSE')" ng-if="itemValue('SqueezeLite_Control')=='PLAY'"><svg viewBox="0 0 80 80"><use xlink:href="/static/matrix-theme/squidink.svg#right-play"></use></svg></div>
+			</div>      
+		</div>
+
+		<div class="widget">
+			<div class="sceneGroup">        
+        <div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==2 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 2)">FM1</div>        
+				<div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==3 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 3)">TOP</div>        
+        <div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==4 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 4)">TOP2</div>           
+        
+        <div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==5 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 5)">SRF1</div>   
+        <div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==6 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 6)">SRF3</div>   
+        <div class="scene" ng-style="{'color': itemValue('SqueezeLite_PlayAFavorite')==7 ? 'blue' : 'white'}" ng-click="sendCmd('SqueezeLite_PlayAFavorite', 7)">Engergy</div> 
+      
+			</div>            
+		</div>
+      
+  </div>
+
+</div>
+  
+<div oc-lazy-load="['/static/matrix-theme/jquery-3.2.1.min.js','/static/matrix-theme/matrix.js']"></div>
+
+<div class="section">
+	<div class="bigDash">
+		<div class="description">Küche</div>
+    <div class="top">
+			<div class="icon on"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#thermometer-3"></use></svg></div>
+			<div class="value">				
+          <div class="main">{{'%.1f' | sprintf:itemValue('Temperatursensor1_Temperatur').split(' ')[0]}}</div>        
+				<div class="sub">&#176C</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#reload"></use></svg></div>
+      			<div class="value">Aktualisiert {{itemValue('Temperatursensor1_LetzteAktualisierung') | date:'dd.MM.yyyy HH:mm' }} </div>
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#battery"></use></svg></div>
+			<div class="value">Batteriestand {{itemValue('Temperatursensor1_Batterieladung') | number:0}} %</div>
+		</div>
+	</div>
+
+
+	<div class="bigDash">
+		<div class="description">Sitzplatz</div>    
+		<div class="top">
+			<div class="icon on"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#thermometer-3"></use></svg></div>
+			<div class="value">
+				    <div class="main">{{'%.1f' | sprintf:itemValue('Temperatursensor2_Temperatur').split(' ')[0]}}</div>
+				<div class="sub">&#176C</div>
+		</div>
+		<div class="bottom">
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#reload"></use></svg></div>
+			<div class="value">Aktualisiert {{itemValue('Temperatursensor2_LetzteAktualisierung') | date:'dd.MM.yyyy HH:mm' }} </div>
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#battery"></use></svg></div>
+			<div class="value">Batteriestand {{itemValue('Temperatursensor2_Batterieladung') | number:0}} %</div>
+		</div>
+   </div>
+      
+    <div class="bigDash">
+		<div class="description">Stube</div>    
+		<div class="top">
+			<div class="icon on"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#thermometer-3"></use></svg></div>
+			<div class="value">
+			
+        <div class="main">{{'%.1f' | sprintf:itemValue('GF_Temp3').split(' ')[0]}}</div>
+				<div class="sub">&#176C</div>
+		</div>
+		<div class="bottom">
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#reload"></use></svg></div>
+			<div class="value">Aktualisiert {{itemValue('GF_Temp3_Last') | date:'dd.MM.yyyy HH:mm' }} </div>
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#battery"></use></svg></div>
+			<div class="value">Batteriestand {{itemValue('GF_Temp3_Bat') | number:0}} %</div>
+      <div class="value">Low {{itemValue('GF_Temp4_Low') | number:0}}</div>
+		</div>
+   </div>
+      
+    <div class="bigDash">
+		<div class="description">Simon</div>    
+		<div class="top">
+			<div class="icon on"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#thermometer-3"></use></svg></div>
+			<div class="value">
+				    <div class="main">{{'%.1f' | sprintf:itemValue('GF_Temp4').split(' ')[0]}}</div>
+				<div class="sub">&#176C</div>
+		</div>
+		<div class="bottom">
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#reload"></use></svg></div>
+			<div class="value">Aktualisiert {{itemValue('GF_Temp4_Last') | date:'dd.MM.yyyy HH:mm' }} </div>
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#battery"></use></svg></div>
+			<div class="value">Batteriestand {{itemValue('GF_Temp4_Bat') | number:0}} %</div>
+      <div class="value">Low {{itemValue('GF_Temp4_Low') | number:0}}</div>
+		</div>  
+    </div>
+      
+    <div class="bigDash">
+		<div class="description">Dusche</div>    
+		<div class="top">
+			<div class="icon on"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#thermometer-3"></use></svg></div>
+			<div class="value">
+				    <div class="main">{{'%.1f' | sprintf:itemValue('GF_Temp5').split(' ')[0]}}</div>
+				<div class="sub">&#176C</div>
+		</div>
+		<div class="bottom">
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#reload"></use></svg></div>
+			<div class="value">Aktualisiert {{itemValue('GF_Temp5_Last') | date:'dd.MM.yyyy HH:mm' }} </div>
+			<div class="icon off"><svg viewBox="0 0 48 48"><use xlink:href="/static/matrix-theme/squidink.svg#battery"></use></svg></div>
+			<div class="value">Batteriestand {{itemValue('GF_Temp5_Bat') | number:0}} %</div>
+      <div class="value">Low {{itemValue('GF_Temp5_Low') | number:0}}</div>
+		</div> 
+	</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+

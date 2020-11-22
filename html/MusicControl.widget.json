@@ -1,0 +1,43 @@
+{
+    "template": "<style>\n.btn-pad{\n  padding:20px 32px;\n  }\n  .btn-radius{\n  padding:40px 40px;\n  border-radius: 50%;!important\n  background-color: #d23f31;\n  height: 56px;\n  width: 56px;\n  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);\n  box-sizing: content-box;\n  margin-left:-13px;\n  position: relative;\n  z-index:1000;\n  cursor:pointer;\n  }\n  .btn-red{\n  background-color:red;\n  }\n  .glyphicon-text{\n  \tfont-size:xx-large;\n  \tpadding: 10px 0 0 5px;\n  }\n  .btn-lf{\n  position: relative;\n  top: -6px;\n  background-color:#fff;\n  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);\n  color:#000;\n  border-top-left-radius:50%;\n  border-bottom-left-radius:50%;\n  cursor:pointer;\n  }\n  .btn-lf:hover{\n  background-color:#eaeaea;\n  color:#fff;\n  }\n  .btn-rt{\n  position: relative;\n  top: -6px;\n  margin-left:-13px;\n  background-color:#fff;\n  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);\n  color:#000;\n  border-top-right-radius:50%;\n  border-bottom-right-radius:50%;\n  cursor:pointer;\n  }\n  .btn-rt:hover{\n  background-color:#eaeaea;\n  color:#fff;\n  }\n  .title-text{\n  margin-left: -90px;\n  display:block;\n  }\n  \n  .div-slider{\n  width:280px;\n  margin:0 auto;\n  }\n</style>\n\n<div>\n  <label class=\"title-text\">{{config.my_name}}</label>\n  <div class=\"btn-group\">\n    <label class=\"btn-pad btn-lf\"\n           ng-click=\"sendCmd(config.action_item,(config.prev_command))\"><i class=\"glyphicon glyphicon-step-backward\"></i></label>\n  \t<label class=\"btn-radius btn-danger\" ng-if=\"itemValue(config.status_item) !='PLAY'\"\n           ng-click=\"sendCmd(config.action_item,'PLAY')\"><i class=\"glyphicon glyphicon-play glyphicon-text\"></i></label>\n    <label class=\"btn-radius btn-warning\" ng-if=\"itemValue(config.status_item) =='PLAY'\"\n           ng-click=\"sendCmd(config.action_item,'PAUSE')\"><i class=\"glyphicon glyphicon-pause glyphicon-text\"></i></label>\n    <label class=\"btn-pad btn-rt\"\n           ng-click=\"sendCmd(config.action_item,(config.next_command))\"><i class=\"glyphicon glyphicon-step-forward\"></i></label>\n  </div>\n  <div class=\"div-slider\">\n<div ng-init='model={\"item\": (config.volume), \"floor\": 0, \"ceil\": 100, \"step\":(config.step)}'>\n  <widget-slider ng-model=\"model\" />\n \n</div>\n  </div>\n</div>",
+    "name": "Music Control",
+    "author": "Mike Murphy",
+    "description": "Music Control Player",
+    "settings": [
+        {
+            "type": "item",
+            "id": "action_item",
+            "label": "Send action to item"
+        },
+        {
+            "type": "item",
+            "id": "status_item",
+            "label": "Get item status"
+        },
+        {
+            "type": "string",
+            "id": "my_name",
+            "label": "Speaker Location/Name"
+        },
+        {
+            "type": "item",
+            "id": "volume",
+            "label": "Volume Item"
+        },
+        {
+            "type": "number",
+            "id": "step",
+            "label": "Volume Increment"
+        },
+        {
+            "type": "string",
+            "id": "next_command",
+            "label": "Next Command Text"
+        },
+        {
+            "type": "string",
+            "id": "prev_command",
+            "label": "Previous Command Text"
+        }
+    ]
+}

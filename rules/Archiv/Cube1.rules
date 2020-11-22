@@ -1,0 +1,61 @@
+rule "Aqara Cube event #01"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d000487554a020012:gestureevent' triggered
+then
+    
+    var actionName = receivedEvent.getEvent()
+    var State CurrentVolume = KodiStube_LautstRke.state  
+    
+    switch(actionName) {
+        case "5": {
+            logInfo("diverses.rules", "Cube #01 MOVE")
+                    }
+        case "3": {
+            logInfo("test_rule.rules", "Cube #01: Flip 90")
+            KodiStube_LautstRke.sendCommand(0)
+           
+        }
+        case "4": {
+            logInfo("test_rule.rules", "Cube #01: Flip 180")
+		
+        }
+        case "6": {
+            logInfo("test_rule.rules", "Cube #01: Tap Twice")
+           
+        }
+        case "1": {
+            logInfo("test_rule.rules", "Cube #01: Shake Air")
+                     
+        }
+        case "2": {
+            logInfo("test_rule.rules", "Cube #01: Free Fall")
+        }
+        case "0": {
+            logInfo("test_rule.rules", "Cube #01: Alert")
+        }
+    }
+end
+
+rule "Aqara Cube event #01_x"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d000487554a03000c:gestureevent' triggered
+then
+    var actionName = receivedEvent.getEvent()
+    switch(actionName) {
+        case "7": {
+            logInfo("test_rule.rules", "Cube #01x: Roate right")
+            KodiStube_LautstRke.sendCommand((KodiStube_LautstRke.state as DecimalType) + 10)
+        }
+        case "8": {
+            logInfo("test_rule.rules", "Cube #01x: Rotate left")
+            KodiStube_LautstRke.sendCommand((KodiStube_LautstRke.state as DecimalType) - 10)
+        
+        }
+        case "2": {
+            logInfo("test_rule.rules", "Cube #01x: Free Fall")
+        }
+        case "0": {
+            logInfo("test_rule.rules", "Cube #01x: Alert")
+        }
+    }
+end

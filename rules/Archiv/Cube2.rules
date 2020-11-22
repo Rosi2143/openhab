@@ -1,0 +1,58 @@
+rule "Aqara Cube event #02"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d00048738c3020012:gestureevent' triggered
+
+then
+    var actionName = receivedEvent.getEvent()
+    switch(actionName) {
+        case "5": {
+            logInfo("diverses.rules", "Cube #02 MOVE")
+            LightstripBettFenster_Farbe.sendCommand(120,100,1)
+        }
+        case "3": {
+            logInfo("test_rule.rules", "Cube #02: Flip 90")
+            LightstripBettFenster_Farbe.sendCommand(0,0,0)
+        }
+        case "4": {
+            logInfo("test_rule.rules", "Cube #02: Flip 180")
+			hue:0210:0017886beb3c:5:color.sendCommand(0,255,0)
+        }
+        case "6": {
+            logInfo("test_rule.rules", "Cube #02: Tap Twice")
+            LightstripBettFenster_Farbe.sendCommand(120,100,1)
+        }
+        case "1": {
+            logInfo("test_rule.rules", "Cube #02: Shake Air")
+        }
+        case "2": {
+            logInfo("test_rule.rules", "Cube #02: Free Fall")
+        }
+        case "0": {
+            logInfo("test_rule.rules", "Cube #02: Alert")
+        }
+    }
+end
+rule "Aqara Cube event #02_x"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d00048738c303000c:gestureevent' triggered
+then
+    var actionName = receivedEvent.getEvent()
+    switch(actionName) {
+        case "7": {
+            logInfo("test_rule.rules", "Cube #02x: Roate right")
+          F2_SimonIK.sendCommand(OFF) 
+        }
+        case "8": {
+            logInfo("test_rule.rules", "Cube #02x: Rotate left")
+          SimonLampeIkea_Helligkeit.sendCommand(5) 
+        }
+        case "2": {
+            logInfo("test_rule.rules", "Cube #02x: Free Fall")
+        }
+        case "0": {
+            logInfo("test_rule.rules", "Cube #02x: Alert")
+        }
+    }
+end
+
+

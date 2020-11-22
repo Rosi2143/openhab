@@ -1,0 +1,26 @@
+Group    Home                     "Our Home"            <house>                                      ["Building"]
+
+Group    C                        "Keller"              <cellar>        (Home)                       ["Basement"]
+Group    GF                       "Erdgeschoss"         <groundfloor>   (Home)                       ["GroundFloor"]
+Group    FF                       "Erster Stock"        <firstfloor>    (Home)                       ["FirstFloor"]
+Group    F2                       "Zweiter Stock"       <attic>         (Home)                       ["Attic"]
+
+Group    GF_Kitchen               "Küche2"               <kitchen>       (Home, GF)                   ["Kitchen"]
+Group    FF_Office                "Büro"                <office>        (Home, FF)                   ["Room"]
+Group    FF_MasterBedroom         "Hauptschlafzimmer"   <bedroom_red>   (Home, FF)                   ["Bedroom"]
+Group    F2_Bedroom               "Schlafzimmer"        <bedroom>       (Home, F2)                   ["Bedroom"]
+Group    C_Werkraum               "Werkraum"            <none>          (Home, C)
+
+Number   GF_Kitchen_Temperature   "Temperatur"          <temperature>   (GF_Kitchen, gTemperature)   ["Temperature"]              {channel=""}
+Switch   GF_Kitchen_Radio         "Radio"               <none>          (GF_Kitchen, gRadio)                                      {channel=""}
+Switch   FF_Office_Light          "Licht"               <light>         (FF_Office, gLight)          ["Lighting", "Switchable"]   {channel=""}
+Switch   FF_Office_Drucker        "Drucker"             <none>          (FF_Office, gDrucker)                                     {channel=""}
+Switch   FF_MasterBedroom_Light   "Licht"               <light>         (FF_MasterBedroom, gLight)   ["Lighting", "Switchable"]   {channel=""}
+Switch   F2_Bedroom_Light         "Licht"               <light>         (F2_Bedroom, gLight)         ["Lighting", "Switchable"]   {channel=""}
+Switch   C_Werkraum_Radio      "Radio"               <none>          (C_Werkraum, gRadio)                                      {channel=""}
+
+Group:Number:AVG           gTemperature   "Temperatur"   <temperature>   (Home)   ["Temperature"]
+Group:Switch:OR(ON, OFF)   gRadio         "Radio"        <none>          (Home)
+Group:Switch:OR(ON, OFF)   gLight         "Licht"        <light>         (Home)   ["Lighting", "Switchable"]
+Group:Switch:OR(ON, OFF)   gDrucker       "Drucker"      <none>          (Home)
+

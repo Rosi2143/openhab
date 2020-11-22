@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32"
+   height="32"
+   id="svg3138"
+   sodipodi:version="0.32"
+   inkscape:version="0.45"
+   version="1.0"
+   sodipodi:docbase="/home/christian/hosted07/install/desktop/linux/icons/hicolor/scalable/actions"
+   sodipodi:docname="vmware-suspended.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
+  <defs
+     id="defs3140">
+    <linearGradient
+       id="linearGradient3081">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3083" />
+      <stop
+         style="stop-color:white;stop-opacity:0;"
+         offset="1"
+         id="stop3085" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3090">
+      <stop
+         id="stop3092"
+         offset="0"
+         style="stop-color:#ffee51;stop-opacity:1;" />
+      <stop
+         id="stop3094"
+         offset="1"
+         style="stop-color:#f2c800;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3081"
+       id="linearGradient2442"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.499999,0,0,0.684211,1.75,4.57896)"
+       x1="15.089521"
+       y1="15.291994"
+       x2="14"
+       y2="52.510574" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3090"
+       id="radialGradient2444"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(8.905772e-7,-0.6126,0.498026,-7.146617e-7,-34.5279,128.8794)"
+       cx="169.77171"
+       cy="100.20107"
+       fx="169.77171"
+       fy="100.20107"
+       r="11" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3081"
+       id="linearGradient2446"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.499999,0,0,0.684211,11.75,4.57896)"
+       x1="15.089521"
+       y1="15.291994"
+       x2="14"
+       y2="52.510574" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3090"
+       id="radialGradient2448"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(8.905772e-7,-0.6126,0.498026,-7.146617e-7,-24.5279,128.8794)"
+       cx="169.77171"
+       cy="100.20107"
+       fx="169.77171"
+       fy="100.20107"
+       r="11" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="18.714286"
+     inkscape:cy="-1.125"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     width="32px"
+     height="32px"
+     inkscape:window-width="914"
+     inkscape:window-height="626"
+     inkscape:window-x="1600"
+     inkscape:window-y="267" />
+  <metadata
+     id="metadata3143">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Suspended Emblem</dc:title>
+        <dc:date>2006-12-13</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Christian Hammond</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>VMware, Inc.</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>emblem</rdf:li>
+            <rdf:li>power</rdf:li>
+            <rdf:li>suspended</rdf:li>
+            <rdf:li>suspend</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/2.5/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/2.5/">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Notice" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/Attribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://web.resource.org/cc/ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g2428"
+       transform="translate(1.99999,3.000013)">
+      <rect
+         y="13.999973"
+         x="15"
+         height="14"
+         width="4"
+         id="rect3177"
+         style="fill:#fce94f;fill-opacity:0.9945355;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         style="color:black;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2442);stroke-width:0.99999911;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         d="M 15.5,14.499987 L 15.5,27.499977 L 18.5,27.499977 L 18.5,14.499987 L 15.5,14.499987 z "
+         id="path3400"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         id="path3396"
+         d="M 14.5,13.499987 L 14.5,28.499987 L 19.50001,28.499987 L 19.50001,13.499987 L 14.5,13.499987 z "
+         style="color:black;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1.00000012;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         style="color:black;fill:url(#radialGradient2444);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         d="M 16,14.999987 L 16,26.999987 L 18,26.999987 L 18,14.999987 L 16,14.999987 z "
+         id="path3404"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         id="path3408"
+         d="M 16.00781,15.003347 L 16,21.050247 L 18,19.464407 L 18,14.999987 L 16.00781,15.003347 z "
+         style="opacity:0.5;color:black;fill:#f7f7f7;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:block;overflow:visible"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <rect
+         y="13.924595"
+         x="15.065857"
+         height="14.18633"
+         width="3.9774756"
+         id="rect3162"
+         style="opacity:0.15;fill:none;fill-opacity:0.9945355;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         style="fill:#fce94f;fill-opacity:0.9945355;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect3179"
+         width="4"
+         height="14"
+         x="25"
+         y="13.999973" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         id="path3181"
+         d="M 25.5,14.499987 L 25.5,27.499977 L 28.5,27.499977 L 28.5,14.499987 L 25.5,14.499987 z "
+         style="color:black;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient2446);stroke-width:0.99999911;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         style="color:black;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#886f00;stroke-width:1.00000012;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         d="M 24.5,13.499987 L 24.5,28.499987 L 29.50001,28.499987 L 29.50001,13.499987 L 24.5,13.499987 z "
+         id="path3185"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         id="path3187"
+         d="M 26,14.999987 L 26,26.999987 L 28,26.999987 L 28,14.999987 L 26,14.999987 z "
+         style="color:black;fill:url(#radialGradient2448);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/pause.png"
+         style="opacity:0.5;color:black;fill:#f7f7f7;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:block;overflow:visible"
+         d="M 26.00781,15.003347 L 26,21.050247 L 28,19.464407 L 28,14.999987 L 26.00781,15.003347 z "
+         id="path3189"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true"
+         sodipodi:nodetypes="ccccc" />
+      <rect
+         style="opacity:0.15;fill:none;fill-opacity:0.9945355;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect3191"
+         width="3.9774756"
+         height="14.18633"
+         x="25.065857"
+         y="13.924595" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48px"
+   height="48px"
+   id="svg11259"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="vm-power-off.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/chipx86/.gvfs/sftp for christian on localhost/home/christian/bfg-main/install/desktop/linux/icons/hicolor/48x48/actions/vm-power-off.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs11261">
+    <linearGradient
+       id="linearGradient3837">
+      <stop
+         id="stop3839"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+      <stop
+         id="stop3841"
+         offset="1"
+         style="stop-color:#ffffff;stop-opacity:0.78350514;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3837"
+       id="linearGradient12016"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(4.7500069,0,0,1.8095224,-742.62581,-73.904725)"
+       x1="174.83363"
+       y1="84.263489"
+       x2="174.74524"
+       y2="105.49083" />
+    <linearGradient
+       id="linearGradient2257">
+      <stop
+         id="stop2259"
+         offset="0"
+         style="stop-color:#ef2929" />
+      <stop
+         id="stop2261"
+         offset="1"
+         style="stop-color:#cc0000" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2257"
+       id="radialGradient12018"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.6030397e-5,-1.8378022,8.9644715,-2.1439851e-6,-836.5029,421.63796)"
+       cx="169.77171"
+       cy="100.20107"
+       fx="169.77171"
+       fy="100.20107"
+       r="11" />
+    <linearGradient
+       id="linearGradient3001">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3003" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.35344827;"
+         offset="1"
+         id="stop3005" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3001"
+       id="linearGradient12020"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(5.8333378,0,0,1.8421059,-86.916655,53.789545)"
+       x1="33.240349"
+       y1="13.769188"
+       x2="33.240349"
+       y2="34.289555" />
+    <linearGradient
+       id="linearGradient2679">
+      <stop
+         style="stop-color:#f7f7f7;stop-opacity:1"
+         offset="0"
+         id="stop2681" />
+      <stop
+         style="stop-color:#ccd0c7;stop-opacity:1"
+         offset="1"
+         id="stop2683" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3147">
+      <stop
+         style="stop-color:#8ae234;stop-opacity:1;"
+         offset="0"
+         id="stop3149" />
+      <stop
+         style="stop-color:#4f9a05;stop-opacity:1;"
+         offset="1"
+         id="stop3151" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3184">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3186" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.13402061;"
+         offset="1"
+         id="stop3188" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 24 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="48 : 24 : 1"
+       inkscape:persp3d-origin="24 : 16 : 1"
+       id="perspective11267" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2679"
+       id="linearGradient12063"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.4207405,0,0,-2.2079782,-691.21384,1056.4891)"
+       x1="288.85159"
+       y1="458.9314"
+       x2="288.85159"
+       y2="476.97733" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3147"
+       id="linearGradient12065"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.1654048,0,0,2.1738552,1075.4355,-46.156999)"
+       x1="-492.9375"
+       y1="24"
+       x2="-492.9375"
+       y2="39.875" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3184"
+       id="linearGradient12067"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.4615752,0,0,2.3333325,-734.04324,-2156.749)"
+       x1="300.32446"
+       y1="926.36218"
+       x2="308.16595"
+       y2="942.25085" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3837"
+       id="linearGradient12426"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(4.7500069,0,0,1.8095224,-742.62581,-73.904725)"
+       x1="174.83363"
+       y1="84.263489"
+       x2="174.74524"
+       y2="105.49083" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2257"
+       id="radialGradient12428"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.6030397e-5,-1.8378022,8.9644715,-2.1439851e-6,-836.5029,421.63796)"
+       cx="169.77171"
+       cy="100.20107"
+       fx="169.77171"
+       fy="100.20107"
+       r="11" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3001"
+       id="linearGradient12430"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(5.8333378,0,0,1.8421059,-86.916655,53.789545)"
+       x1="33.240349"
+       y1="13.769188"
+       x2="33.240349"
+       y2="34.289555" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="6.6339286"
+     inkscape:cy="24"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="1680"
+     inkscape:window-height="981"
+     inkscape:window-x="0"
+     inkscape:window-y="24">
+    <inkscape:grid
+       type="xygrid"
+       id="grid12055" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata11264">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <g
+       id="g12419"
+       transform="translate(-66.999998,-73.999998)">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/poweroff.png"
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         id="path12006"
+         d="M 71.999985,78.999995 L 71.999985,117 L 110.00001,117 L 110.00001,78.999995 L 71.999985,78.999995 z"
+         style="opacity:0.15;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient12426);stroke-width:1.99999952;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible" />
+      <path
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         id="path12008"
+         d="M 72.499945,79.500015 L 72.499945,116.50001 L 109.49992,116.50001 L 109.49992,79.500015 L 72.499945,79.500015 z"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#cc0000;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/poweroff.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         inkscape:r_cy="true"
+         inkscape:r_cx="true"
+         style="fill:url(#radialGradient12428);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         d="M 72.999995,80.000015 L 72.999995,116.00001 L 109,116.00001 L 109,80.000015 L 72.999995,80.000015 z"
+         id="path12010"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/poweroff.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         style="opacity:0.33478262;fill:#f7f7f7;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:block;overflow:visible"
+         d="M 72.999995,80.157785 L 72.999995,99.000015 L 109,95.200015 L 109,80.000015 L 72.999995,80.157785 z"
+         id="path12012"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/poweroff.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/chipx86/graphics/projects/vmware/tango/poweroff.png"
+         id="path12014"
+         d="M 73.499955,115.49999 L 73.499955,80.500005 L 108.49995,80.500005 L 108.49995,115.49999 L 73.499955,115.49999 z"
+         style="opacity:0.89166667;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient12430);stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible"
+         inkscape:r_cx="true"
+         inkscape:r_cy="true" />
+    </g>
+  </g>
+</svg>
