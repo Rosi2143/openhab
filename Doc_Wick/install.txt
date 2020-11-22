@@ -32,3 +32,8 @@ git push
 
 Aenderungen holen vom github
 git pull
+
+Ich musste auf main master stellen.
+twlin8
+$ ssh-keygen -o
+ssh-keygen -o -C "t.wick@gmx.ch"
