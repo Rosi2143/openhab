@@ -1,0 +1,383 @@
+var Timer partyTimer = null
+val String rulesDomaine = "colorscenes.rules"
+var Timer rotateTimer = null
+val Number timeInBetweenRotations = 10 // in minutes
+
+rule "Wandsender1fach1"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d0002f352d8010012:buttonevent' triggered
+then	
+    var actionName    = receivedEvent.getEvent()
+    var TextString    = "Wandsender1fach_1, Florian.rules"
+    var autoModeItem     = FL1_LED_Color     as GenericItem
+    var autoModeItem_rgb = FL1_LED_Color_rgb as GenericItem
+    var autoModeItem_dim = FL1_LED_Color_dim as GenericItem
+   
+
+    logInfo("Wandsender1fach1", "Rule Wandsender_1-fach_1")
+    switch(actionName) {
+        case "1001": {
+            logInfo(TextString, "case 1001, Langer klick")
+            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") }
+            FL1_LED_Color_rgb.sendCommand(currColor+",100,100") 
+        }
+        case "1002": {           
+            logInfo(TextString, "case 1002, Einfachklick, ein/aus")                                                                 
+            if (autoModeItem.state==ON) {  
+                autoModeItem_rgb.sendCommand("0,0,0")
+                Florian_Party_Mode.sendCommand("OFF")
+                autoModeItem_rgb.sendCommand("0,0,0")
+                }
+            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") }
+                        
+        }
+        case "1004": {
+            logInfo(TextString, "case 1004, Doppelklick")   
+            if (Florian_Party_Mode.state==ON ) { Florian_Party_Mode.sendCommand("OFF") }
+            if (Florian_Party_Mode.state==OFF ) { Florian_Party_Mode.sendCommand("ON") }
+       
+        }
+    }    
+        
+end
+
+
+
+rule "Florian LED Party Mode"
+when
+    Item Florian_Party_Mode received command ON
+then
+
+    partyTimer?.cancel // cancel the timer if one exists for some reason
+
+    val increment = 10
+    var currColor = 0
+
+    partyTimer = createTimer(now, [ |
+        FL1_LED_Color_rgb.sendCommand(currColor+",100,100")
+        currColor = (currColor + increment) % 360
+        partyTimer.reschedule(now.plusMillis(800))
+    ])
+end
+
+rule "Party mode turned off"
+when
+    Item Florian_Party_Mode changed from ON to OFF 
+then
+    partyTimer?.cancel
+    FL1_LED_Color_rgb.sendCommand("0,100,100")
+    partyTimer = null
+end
+
+
+
+
+/*
+HSB string values consist of three comma-separated values for 
+- hue (0-360°),
+- saturation (0-100%),
+- and brightness (0-100%)
+respectively, e.g. 
+* 0   for red
+* 120 for green
+* 200 for turquoise
+* 240 for blue
+* 270 for violett
+*/
+
+
+
+
+/*
+Set colors for all color lights
+370 = warm light
+400 = rotate (sync)
+410 = rotate (async)
+420 = color gradient
+999 = scenes off
+*/
+rule "Set Colors"
+when
+    Item Scene_Hue_Color_All received command
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand > 370) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Colors\" triggered")
+
+    // 2. Calculate what needs to be done.
+    // if timer != null -> cancel
+    rotateTimer?.cancel
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+
+    // Only if all color lights are off, switch them all on
+    if (GColor_Lights.state == OFF) {
+        GColor_Lights.sendCommand(ON)
+    }
+
+    Scene_Hue_Color_Bedroom.sendCommand(receivedCommand)
+    Scene_Hue_Color_Corridor.sendCommand(receivedCommand)
+    Scene_Hue_Color_Left_Cabinet.sendCommand(receivedCommand)
+    Scene_Hue_Color_Right_Cabinet.sendCommand(receivedCommand)
+end
+
+
+rule "Rotate Colors - Syncron"
+when
+    Item Scene_Hue_Color_All received command 400
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 400) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Rotate Colors - Syncron\" triggered")
+
+    // 2. Calculate what needs to be done.
+    // if timer != null -> cancel
+    rotateTimer?.cancel
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    
+    // Only if all color lights are off, switch them all on
+    if (GColor_Lights.state == OFF) {
+        GColor_Lights.sendCommand(ON)
+    }
+
+    rotateTimer = createTimer(now, [ |
+
+        var Number color = (Math::random * 360.0).intValue + 1
+		
+		Scene_Hue_Color_Bedroom.sendCommand(color)
+        Scene_Hue_Color_Corridor.sendCommand(color)
+        Scene_Hue_Color_Left_Cabinet.sendCommand(color)
+        Scene_Hue_Color_Right_Cabinet.sendCommand(color)
+
+        rotateTimer.reschedule(now.plusMinutes(timeInBetweenRotations))
+	])
+end
+
+
+rule "Rotate Colors - Asyncron"
+when
+    Item Scene_Hue_Color_All received command 410
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 410) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Rotate Colors - Asyncron\" triggered")
+
+    // 2. Calculate what needs to be done.
+    // if timer != null -> cancel
+    rotateTimer?.cancel
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    
+    // Only if all color lights are off, switch them all on
+    if (GColor_Lights.state == OFF) {
+        GColor_Lights.sendCommand(ON)
+    }
+
+    rotateTimer = createTimer(now, [ |
+		
+		Scene_Hue_Color_Bedroom.sendCommand((Math::random * 360.0).intValue + 1)
+        Scene_Hue_Color_Corridor.sendCommand((Math::random * 360.0).intValue + 1)
+        Scene_Hue_Color_Left_Cabinet.sendCommand((Math::random * 360.0).intValue + 1)
+        Scene_Hue_Color_Right_Cabinet.sendCommand((Math::random * 360.0).intValue + 1)
+
+        rotateTimer.reschedule(now.plusMinutes(timeInBetweenRotations))
+	])
+end
+
+
+rule "Color Gradient"
+when
+    Item Scene_Hue_Color_All received command 420
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 420) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Color Gradient\" triggered")
+
+    // 2. Calculate what needs to be done.
+    // if timer != null -> cancel
+    rotateTimer?.cancel
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    
+    // Only if all color lights are off, switch them all on
+    if (GColor_Lights.state == OFF) {
+        GColor_Lights.sendCommand(ON)
+    }
+
+    rotateTimer = createTimer(now, [ |
+
+        var Number color = Integer::parseInt(Hue_LR_Showcase_Left_Color.state.toString.split(",").get(0))
+        if (color >= 359) {
+            color = 0
+        } else {
+            color = color + 1
+        }        
+		
+		Scene_Hue_Color_Bedroom.sendCommand(color)
+        Scene_Hue_Color_Corridor.sendCommand(color)
+        Scene_Hue_Color_Left_Cabinet.sendCommand(color)
+        Scene_Hue_Color_Right_Cabinet.sendCommand(color)
+
+        rotateTimer.reschedule(now.plusSeconds(60))
+	])
+end
+
+
+rule "End Timer"
+when
+    Item GColor_Lights changed from ON to OFF or
+    Item Scene_Hue_Color_All changed to 999
+then
+	logInfo(rulesDomaine, "Rule \"End Timer\" triggered")
+    rotateTimer?.cancel
+    //Scene_Hue_Color_All.sendCommand(999)
+end
+
+
+rule "Resume Timer"
+when
+    Item GColor_Lights changed from OFF to ON
+then
+    if (Scene_Sunrise.state == ON) return
+	logInfo(rulesDomaine, "Rule \"Resume Timer\" triggered with state: " +
+            Scene_Hue_Color_All.state)
+    Scene_Hue_Color_All.sendCommand(Scene_Hue_Color_All.state as Number)
+end
+
+
+rule "Set Color Bedroom"
+when
+    Item Scene_Hue_Color_Bedroom received command
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand > 360) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Bedroom\" triggered")
+
+    // 2. Calculate what needs to be done.
+    var String color = receivedCommand.toString
+    var String brightness = Hue_BR_Wardrobe_Color.state.toString.split(",").get(2)
+    var String hsb_triple = color + ",100," + brightness
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_BR_Wardrobe_Color.sendCommand(hsb_triple)
+end
+
+
+rule "Set Color Corridor"
+when
+    Item Scene_Hue_Color_Corridor received command
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand > 360) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Corridor\" triggered")
+
+    // 2. Calculate what needs to be done.
+    var String color = receivedCommand.toString
+    var String brightness = Hue_C_Lamp_Color.state.toString.split(",").get(2)
+    var String hsb_triple = color + ",100," + brightness
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_C_Lamp_Color.sendCommand(hsb_triple)
+end
+
+
+rule "Set Color Left Cabinet"
+when
+    Item Scene_Hue_Color_Left_Cabinet received command
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand > 360) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Left Cabinet\" triggered")
+
+    // 2. Calculate what needs to be done.
+    var String color = receivedCommand.toString
+    var String brightness = Hue_LR_Showcase_Left_Color.state.toString.split(",").get(2)
+    var String hsb_triple = color + ",100," + brightness
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_LR_Showcase_Left_Color.sendCommand(hsb_triple)
+end
+
+
+rule "Set Color Right Cabinet"
+when
+    Item Scene_Hue_Color_Right_Cabinet received command
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand > 360) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Right Cabinet\" triggered")
+
+    // 2. Calculate what needs to be done.
+    var String color = receivedCommand.toString
+    var String brightness = Hue_LR_Showcase_Right_Color.state.toString.split(",").get(2)
+    var String hsb_triple = color + ",100," + brightness
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_LR_Showcase_Right_Color.sendCommand(hsb_triple)
+end
+
+
+rule "Set Color Bedroom - Warm Light"
+when
+    Item Scene_Hue_Color_Bedroom received command 370
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 370) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Bedroom - Warm Light\" triggered")
+
+    // 2. Calculate what needs to be done.
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_BR_Wardrobe_Temperature.sendCommand(100)
+end
+
+rule "Set Color Corridor - Warm Light"
+when
+    Item Scene_Hue_Color_Corridor received command 370
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 370) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Corridor - Warm Light\" triggered")
+
+    // 2. Calculate what needs to be done.
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_C_Lamp_Temperature.sendCommand(100)
+end
+
+rule "Set Color Right Cabinet - Warm Light"
+when
+    Item Scene_Hue_Color_Right_Cabinet received command 370
+then
+    // 1. Check to see if the Rule has to run at all, if not exit.
+    if( receivedCommand != 370) return;
+
+    // Only log if rule applies
+	logInfo(rulesDomaine, "Rule \"Set Color Right Cabinet - Warm Light\" triggered")
+
+    // 2. Calculate what needs to be done.
+
+    // 3. Do it. Only do actions in like sendCommand in one place at the end of the Rule.
+    Hue_LR_Showcase_Right_Temperature.sendCommand(100)
+end
