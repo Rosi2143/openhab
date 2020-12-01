@@ -75,7 +75,7 @@ then
     var TextString       = "Büro Schalter"
     
     switch(actionName) {
-        case "1002": {	
+        case "1002": {
             logInfo(TextString, "case 1002, Einfachklick")            
            if (autoModeItem.state==ON){  autoModeItem_rgb.sendCommand("0,0,0") }
            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") }
@@ -88,21 +88,5 @@ then
         } 
         
     }  
-end
-
-rule "Wandsender_1-fach_1"
-when
-    Channel 'deconz:switch:5c6cc3c3:00158d0002f352d8010012:buttonevent' triggered
-then	
-    var actionName = receivedEvent.getEvent()
-    switch(actionName) {
-        case "1002": {
- 	
-            if (FF_LuTh_Color.state==ON){  FF_LuTh_Color_rgb.sendCommand("0,0,0") }
-            if (FF_LuTh_Color.state==OFF){ FF_LuTh_Color_rgb.sendCommand("0,0,70") 
-            	}
-        }
-    }    
-        
 end
 

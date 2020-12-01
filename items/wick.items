@@ -43,6 +43,11 @@ Switch         Cube1_Status1x  "Bewegungsstatus [%s]"       { channel="hue:0830:
 Switch         Cube1_Statusgest  "Bewegungsstatus [%s]"       { channel="hue:0830:4ea421b3:gestureevent"}
 
 Switch         Cube1_Status11x "Bewegungsstatus" <number>   (GF_Kitchen, gTemperature)  ["Cube Event"]    { channel="hue:0830:4ea421b3:tap_switch_event" }
+/* Lampen FL */
+Switch   FL1_LED_Color       "FL Ein/Aus RGB"        <light>         (FF_Office,gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:0017886beb3c:7:color"}
+Color    FL1_LED_Color_rgb   "FL Licht"        <light>         (FF_Office, gLight)      ["Lighting", "ColorLighting"]   {channel="hue:0210:0017886beb3c:7:color"}
+Dimmer   FL1_LED_Color_dim   "FL_hell"        <light>        (FF_Office,gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:0017886beb3c:7:color_temperature"}
+Switch   Florian_Party_Mode 
                                                                       
 /* Lampe Büro */
 Switch   FF_Office_Color       "Büro Ein/Aus RGB"        <light>         (FF_Office,gLight)      ["Lighting", "Switchable"]   {channel="hue:0210:00212E0488C9:1:color"}
