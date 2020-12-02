@@ -1,3 +1,8 @@
+var Timer partyTimer = null
+val String rulesDomaine = "colorscenes.rules"
+var Timer rotateTimer = null
+val Number timeInBetweenRotations = 10 // in minutes
+
 rule "Aqara Cube event #02"
 when
     Channel 'deconz:switch:5c6cc3c3:00158d00048738c3020012:gestureevent' triggered
@@ -82,4 +87,38 @@ then
         }        
     }  
 end
+
+
+
+
+rule "Simon LED Party Mode"
+when
+    Item Simon_Party_Mode received command ON
+then
+
+    partyTimer?.cancel // cancel the timer if one exists for some reason
+
+    val increment = 10
+    var currColor = 0
+    var currColor1 = 30
+
+    partyTimer = createTimer(now, [ |
+        F2_Simon_LS_BettInnen_LED_rgb.sendCommand(currColor+",100,100")
+        F2_Simon_LS_BettFenster_LED_rgb.sendCommand(currColor1+",100,100")
+        currColor = (currColor + increment) % 360
+        currColor1 = (currColor1 + increment) % 360
+        partyTimer.reschedule(now.plusMillis(800))
+    ])
+end
+
+rule "Party mode turned off"
+when
+    Item Simon_Party_Mode changed from ON to OFF 
+then
+    partyTimer?.cancel
+    F2_Simon_LS_BettInnen_LED_rgb.sendCommand("0,100,100")
+    F2_Simon_LS_BettFenster_LED_rgb.sendCommand("0,100,100")
+    partyTimer = null
+end
+
 
