@@ -1,0 +1,120 @@
+import org.openhab.core.library.types.HSBType
+var Timer TimerBu = null
+
+rule "Büro Schalter"
+when
+   Channel 'deconz:switch:5c6cc3c3:00158d00025d7118010012:buttonevent' triggered 
+then
+    var TextString       = "SW1-Büro Schalter gedrückt"
+    
+   
+    //var actionName = receivedEvent.getEvent()
+    var actionName = receivedEvent  // .split("##")
+    
+    val autoModeItem     = BueroHue_Farbtemperatur as GenericItem
+    val autoModeItem_rgb = BueroHue_Farbe as GenericItem
+
+    var buffer = autoModeItem_rgb.state.toString.split(",")
+    var value = Integer.parseInt(buffer.get(2))
+    var status2 = autoModeItem_rgb.state.toString
+
+  
+    logInfo(TextString, "Event received: "+ actionName)  
+    logInfo(TextString, value.toString)  
+    logInfo(TextString, status2)  
+    
+    switch(actionName) {
+        case "1002": {
+            logInfo(TextString, "case 1002, Einfachklick")    
+
+            // Ausgeschalteter Zustand
+            if (value.toString=="0") {  
+                autoModeItem_rgb.sendCommand("0,0,70") 
+                logInfo(TextString, "Ausgeschaltet, schalte Lampe ein")  
+            }                      
+             
+           if (value.toString!="0"){  
+               autoModeItem_rgb.sendCommand("0,0,0") 
+               logInfo(TextString, "Eingeschaltet, schalte Lampe aus")  
+           }
+           
+        }
+        case "1004": {	
+           logInfo(TextString, "case 1004, Doppelklick")   
+           if (value.toString=="0") {  
+                autoModeItem_rgb.sendCommand("0,0,70") 
+                logInfo(TextString, "Ausgeschaltet, schalte Lampe ein")  
+            }  
+            autoModeItem_rgb.sendCommand("70,70,70") 
+    
+        } 
+        
+    }  
+end
+
+
+
+   
+rule "Alarm Büro"
+when
+    Item AlarmBuero changed to ON
+then
+    var TextString       = "Alarm Büro"
+    val alarmItem        = BueroHue_Farbe 
+    
+if(TimerBu !== null) {
+    TimerBu.cancel
+    TimerBu = null
+}
+TimerBu = createTimer(now.plusSeconds(1)) [
+ 
+    var HSBType currentState
+    currentState = alarmItem.state as HSBType
+    
+    var DecimalType new_H = currentState.hue
+    var PercentType new_S = currentState.saturation
+    var PercentType new_B = currentState.brightness
+
+   
+         if (new_B.toString =="0") {                 
+               val PercentType new_B = new PercentType(100)
+               var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+               logInfo(TextString, newState1.toString)   
+               alarmItem.sendCommand(newState1)                                                  
+            }                      
+             
+           if (new_B.toString!="0"){  
+               val PercentType new_B = new PercentType(0)
+               var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+               logInfo(TextString, newState1.toString)     
+               alarmItem.sendCommand(newState1)  
+           }
+   
+
+    TimerBu.reschedule(now.plusSeconds(1))
+]    
+    
+end
+
+rule "Alarm Büro Abschaltung"
+when
+    Item AlarmBuero changed to OFF
+then
+   val alarmItem         = BueroHue_Farbe 
+    var TextString       = "Alarm Büro Abschaltung"
+    var HSBType currentState
+    currentState = alarmItem.state as HSBType
+    
+    var DecimalType new_H = currentState.hue
+    var PercentType new_S = currentState.saturation
+    
+    val PercentType new_B = new PercentType(0)
+    var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+    logInfo(TextString, newState1.toString)     
+    alarmItem.sendCommand(newState1)  
+               
+if(TimerBu !== null) {
+   TimerBu.cancel
+   TimerBu = null
+}
+end

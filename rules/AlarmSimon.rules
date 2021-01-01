@@ -1,0 +1,48 @@
+var Timer TimerH = null
+    
+rule "Alarm_Simon2"
+when
+    Item AlarmSimon changed to ON
+then
+  var TextString       = "Alarm Simon"
+
+  logInfo(TextString, "Alarm wird eingeschaltet--------")
+SimonsNestMini_Lautstrke.sendCommand(70)
+SimonsNestMini_Fernbedienung.sendCommand(PLAY)
+SimonsNestMini_URIabspielen.sendCommand("http://192.168.1.92:8080/static/Daddy.mp3")
+   
+if(TimerH !== null) {
+    TimerH.cancel
+    TimerH = null
+}
+TimerH = createTimer(now.plusSeconds(1)) [
+    logInfo(TextString, "-- loop")
+        var dimmerStatus = (IkeaSimon_Helligkeit.state as DecimalType).intValue           
+            logInfo(TextString, dimmerStatus.toString)
+         if (dimmerStatus == 0) {  
+               logInfo(TextString, "-- IkeaSimon_Helligkeit 100")
+                IkeaSimon_Helligkeit.sendCommand(100)                                    
+            }                                   
+           if (dimmerStatus != 0){  
+               logInfo(TextString, "-- IkeaSimon_Helligkeit 0")
+               IkeaSimon_Helligkeit.sendCommand(0)        
+           }      
+    TimerH.reschedule(now.plusSeconds(1))
+]
+end
+
+rule "AlarmSimon Abschaltung2"
+when
+    Item AlarmSimon changed to OFF
+then
+  var TextString       = "Alarm Simon"
+  logInfo(TextString, "---- Alarm wird ausgeschaltet--------")
+
+  SimonsNestMini_Stop.sendCommand(ON)
+
+//    IkeaSimon_Helligkeit.sendCommand(0)   
+if(TimerH !== null) {
+   TimerH.cancel
+   TimerH = null
+}
+end

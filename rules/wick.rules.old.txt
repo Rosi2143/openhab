@@ -1,0 +1,68 @@
+var Timer TimerH = null
+
+rule "Alarm Simon"
+when
+    Item AlarmSimon changed to ON
+then
+SimonSNestMini_Fernbedienung.sendCommand(PLAY)
+SimonNestPlayURI.sendCommand("http://192.168.1.92:8080/static/Daddy.mp3")
+
+if(TimerH !== null) {
+    TimerH.cancel
+    TimerH = null
+}
+
+TimerH = createTimer(now.plusSeconds(1)) [
+    if(AlarmSimon.state==ON){
+       if (F2_SimonIK.state==ON){ 
+          F2_SimonIK.sendCommand(OFF) 
+         }
+       if (F2_SimonIK.state==OFF){ 
+          F2_SimonIK.sendCommand(ON)           
+       }
+      
+    }
+    TimerH.reschedule(now.plusSeconds(1))
+]
+end
+
+rule "Automatische Alarmabschaltung"
+when
+    Item AlarmSimon changed to OFF
+then
+    AlarmSimon.sendCommand(OFF)
+    SimonSNestMini_Fernbedienung.sendCommand(PAUSE)
+if(TimerH !== null) {
+   TimerH.cancel
+   TimerH = null
+}
+end
+
+rule "TRADFRI on/off switch (IK1)"
+when
+   Channel 'deconz:switch:5c6cc3c3:14b457fffe6f78c2011000:buttonevent' triggered 
+then
+    var actionName = receivedEvent.getEvent()
+    
+    val autoModeItem     = FF_LuTh_Color as GenericItem
+    val autoModeItem_rgb = FF_LuTh_Color_rgb as GenericItem
+    var TextString       = "TRADFRI on/off switch (IK1)"
+    
+    switch(actionName) {
+        case "1002": {	
+            logInfo(TextString, "case 1002, 1 pressed")
+            if (autoModeItem.state==ON){  autoModeItem_rgb.sendCommand("0,0,0") }
+            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") 
+            	}
+        }
+        case "2002": {	
+            logInfo(TextString, "case 2002, O pressed")
+            if (autoModeItem.state==ON){  autoModeItem_rgb.sendCommand("0,0,0") }
+            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") 
+            	}
+        }
+    }  
+end
+
+
+

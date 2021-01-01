@@ -1,0 +1,86 @@
+var Timer TimerFl = null
+
+
+rule "Alarm Florian"
+when
+    Item AlarmFlorian changed to ON
+then
+    var TextString       = "Alarm Büro"
+    val alarmItem        = LEDStripsFL1_Farbe 
+    val alarmItem1       = FlorianBettLightStrip_Farbe
+    
+    FlorianNestMini_Lautstarke.sendCommand(70)
+    FlorianNestMini_Fernbedienung.sendCommand(PLAY)
+    FlorianNestMini_URIabspielen.sendCommand("http://192.168.1.92:8080/static/Fl_scooby_doo_4_rington.mp3")
+
+if(TimerFl !== null) {
+    TimerFl.cancel
+    TimerFl = null
+}
+TimerFl = createTimer(now.plusSeconds(2)) [
+ 
+    var HSBType currentState
+    currentState = alarmItem.state as HSBType
+    
+    var DecimalType new_H = currentState.hue
+    var PercentType new_S = currentState.saturation
+    var PercentType new_B = currentState.brightness
+
+   
+         if (new_B.toString =="0") {                 
+               val PercentType new_B = new PercentType(100)
+               var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+               
+               logInfo(TextString, alarmItem.toString+", New State:"+newState1.toString)
+               logInfo(TextString, alarmItem1.toString+", New State:"+newState1.toString)  
+               alarmItem.sendCommand(newState1)   
+               alarmItem1.sendCommand(newState1)                                                 
+            }                      
+             
+           if (new_B.toString!="0"){  
+               val PercentType new_B = new PercentType(0)
+               var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+               logInfo(TextString, newState1.toString)     
+               alarmItem.sendCommand(newState1)  
+               alarmItem1.sendCommand(newState1)  
+               logInfo(TextString, alarmItem.toString+", New State:"+newState1.toString)
+               logInfo(TextString, alarmItem1.toString+", New State:"+newState1.toString)                                                 
+           }
+   
+
+    TimerFl.reschedule(now.plusSeconds(2))
+]    
+    
+end
+
+
+rule "Alarm Florian Abschaltung"
+when
+    Item AlarmFlorian changed to OFF
+then
+    val alarmItem         = LEDStripsFL1_Farbe 
+    val alarmItem1        = FlorianBettLightStrip_Farbe
+    var TextString        = "Alarm Florian Abschaltung"
+        
+    FlorianNestMini_Stop.sendCommand(ON)
+    AlarmFlorian.sendCommand(OFF)
+    
+    var HSBType currentState
+    currentState = alarmItem.state as HSBType
+    
+    var DecimalType new_H = currentState.hue
+    var PercentType new_S = currentState.saturation
+    
+    val PercentType new_B = new PercentType(0)
+    var HSBType newState1 = new HSBType(new_H,new_S,new_B)
+    logInfo(TextString, newState1.toString)   
+    alarmItem.sendCommand(newState1)  
+    alarmItem1.sendCommand(newState1)     
+    logInfo(TextString, alarmItem.toString+", New State:"+newState1.toString)
+    logInfo(TextString, alarmItem1.toString+", New State:"+newState1.toString)                                                         
+    
+if(TimerFl !== null) {
+   TimerFl.cancel
+   TimerFl = null
+}
+end

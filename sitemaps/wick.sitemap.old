@@ -1,0 +1,47 @@
+sitemap our_home label="Our Home" {
+    Frame label="Erdgeschoss" icon="groundfloor" {
+        Group item=GF_Kitchen
+    }
+
+    Frame label="Erster Stock" icon="firstfloor" {
+        Group item=FF_Office
+        Group item=FF_MasterBedroom
+    }
+
+    Frame label="Zweiter Stock" icon="attic" {
+        Group item=F2_Bedroom
+    }
+
+    Frame label="Keller" icon="cellar" {
+        Group item=C_Werkraum
+    }
+
+    Frame label="Temperatur" icon="Temperatur" {
+        Group item=gTemperature
+    }
+
+    Frame label="Batteriestand2" icon="batterylevel" {
+        Group item=gBattery
+    }
+    
+    Frame label="Lichter2" icon="light" {
+        Group item=gLight
+    }
+    Frame {
+        
+        Text label="Radio" {
+            Default item=GF_Kitchen_Radio label="Küche"
+            Default item=C_Werkraum_Radio label="Werkraum"
+        }
+
+        Text label="Licht" icon="light" {
+            Default item=FF_Office_Light label="Büro"
+            Default item=FF_MasterBedroom_Light label="Hauptschlafzimmer"
+            Default item=F2_Bedroom_Light label="Schlafzimmer"
+        }
+
+        Text label="Drucker" {
+            Default item=FF_Office_Drucker label="Büro"
+        }
+    }
+}

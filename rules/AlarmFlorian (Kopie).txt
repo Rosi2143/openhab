@@ -1,0 +1,58 @@
+var Timer TimerHF = null
+
+
+    
+rule "Alarm Florian"
+when
+    Item AlarmFlorian changed to ON
+then
+
+FlorianNestMini_Lautstarke.sendCommand(70)
+FlorianNestMini_Fernbedienung.sendCommand(PLAY)
+FlorianNestMini_URIabspielen.sendCommand("http://192.168.1.92:8080/static/Fl_scooby_doo_4_rington.mp3")
+
+   
+if(TimerHF !== null) {
+    TimerHF.cancel
+    TimerHF = null
+}
+TimerHF = createTimer(now.plusSeconds(1)) [
+ 
+
+    var buffer = LEDStripsFL1_Farbe.state.toString.split(",")
+    var value = Integer.parseInt(buffer.get(2))
+
+    
+
+   //AlarmSimon.sendCommand(OFF)
+
+         if (value.toString=="0") {  
+ 
+                LEDStripsFL1_Farbe.sendCommand("0,0,70")
+                
+                
+            }                      
+             
+           if (value.toString!="0"){  
+   
+               LEDStripsFL1_Farbe.sendCommand("0,0,0")     
+           }
+   
+   
+    TimerHF.reschedule(now.plusSeconds(1))
+]    
+    
+end
+
+rule "Alarm Florian Abschaltung"
+when
+    Item AlarmFlorian changed to OFF
+then
+    FlorianNestMini_Stop.sendCommand(ON)
+    AlarmFlorian.sendCommand(OFF)
+    LEDStripsFL1_Farbe.sendCommand("0,0,0")   
+if(TimerHF !== null) {
+   TimerHF.cancel
+   TimerHF = null
+}
+end
