@@ -26,8 +26,8 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 
 Nach Änderungen
 git add install.txt
+git add -A
 git commit -a -m "New commit message"
-
 git push
 
 Aenderungen holen vom github
