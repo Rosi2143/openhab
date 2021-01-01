@@ -3,6 +3,45 @@ val String rulesDomaine = "colorscenes.rules"
 var Timer rotateTimer = null
 val Number timeInBetweenRotations = 10 // in minutes
 
+val Functions$Function3 <SwitchItem, ColorItem, NumberItem, Boolean> cycleColors = [ light, lightColor, mode |
+    var hue = 0
+    val sat = new PercentType(75)
+    val bright = new PercentType(100)
+    var direction = 1
+    val long pause = 200
+
+    logInfo("CycleColor", "Starting color loop for " + light.name)
+    
+    // Make sure the light is ON
+    if(light.state != ON) light.sendCommand(ON)
+    
+    logInfo("CycleColor", "mode " + mode.state)
+    logInfo("CycleColor", "light " + light.getStateAs(OnOffType))
+
+    while(mode.state == ON && light.getStateAs(OnOffType) == ON) {
+    	
+    	Thread::sleep(pause)
+    	hue = hue + (5 * direction)
+        logInfo("CycleColor", "Loop round for " + light.name + " hue="+hue.toString+" direction="+direction.toString)
+
+    	if(hue >= 360) {
+    		hue = 360
+    		direction = direction * -1
+            logInfo("CycleColor", "Direction up direction="+direction.toString)
+    	}
+    	else if (hue < 0) {
+    		hue = 0
+    		direction = direction * -1
+            logInfo("CycleColor", "Direction down")
+    	}
+    	
+    	lightColor.sendCommand(new HSBType(new DecimalType(hue), sat, bright).toString) // for some reason Designer marks just HSBType as ambiguous function call so I call toString
+    }
+    
+    true    
+]
+
+
 rule "Wandsender1fach1"
 when
     Channel 'deconz:switch:5c6cc3c3:00158d0002f352d8010012:buttonevent' triggered
@@ -18,22 +57,45 @@ then
     switch(actionName) {
         case "1001": {
             logInfo(TextString, "case 1001, Langer klick")
-            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") }
-            FL1_LED_Color_rgb.sendCommand(currColor+",100,100") 
+            if (autoModeItem.state==OFF)        { autoModeItem_rgb.sendCommand("0,0,70") }
+
+            logInfo( "HSBtype", FL1_LED_Color_rgb.state.toString)
+
+            var HSBType currentState
+            currentState = FL1_LED_Color_rgb.state as HSBType
+            var DecimalType new_H = currentState.hue
+            var PercentType new_S = currentState.saturation
+            var PercentType new_B = currentState.brightness 
+
+            new_H=10		
+	    logInfo( "hueValue" , new_H.toString)
+	    logInfo( "saturationValue" , new_S.toString)
+	    logInfo( "brightnessValue" , new_B.toString)
+
+
+
+			    logInfo( "hueValue" , new_H.toString)
+           //var HSBType newState = new HSBType(new_H,new_S,new_B)
+           //sendCommand(autoModeItem_rgb,newState.toString)        
+           autoModeItem_rgb.sendCommand("180,100,100")    
+            
+         
+           
         }
         case "1002": {           
-            logInfo(TextString, "case 1002, Einfachklick, ein/aus")                                                                 
-            if (autoModeItem.state==ON) {  
-                autoModeItem_rgb.sendCommand("0,0,0")
-                Florian_Party_Mode.sendCommand("OFF")
-                autoModeItem_rgb.sendCommand("0,0,0")
-                }
-            if (autoModeItem.state==OFF){ autoModeItem_rgb.sendCommand("0,0,70") }
+            logInfo(TextString, "case 1002, Einfachklick, ein/aus") 
+              
+            if (Florian_Party_Mode.state==ON )  { Florian_Party_Mode.sendCommand("OFF") 
+            
+            }                                                                  
+            if (autoModeItem.state==ON )        { autoModeItem_rgb.sendCommand("0,0,0")} 
+            if (autoModeItem.state==OFF)        { autoModeItem_rgb.sendCommand("0,0,70") }
+             
                         
         }
         case "1004": {
             logInfo(TextString, "case 1004, Doppelklick")   
-            if (Florian_Party_Mode.state==ON ) { Florian_Party_Mode.sendCommand("OFF") }
+            if (Florian_Party_Mode.state==ON )  { Florian_Party_Mode.sendCommand("OFF") }
             if (Florian_Party_Mode.state==OFF ) { Florian_Party_Mode.sendCommand("ON") }
        
         }
