@@ -6,7 +6,7 @@ when
     Item AlarmFlorian changed to ON
 then
     var TextString       = "Alarm Büro"
-    val alarmItem        = LEDStripsFL1_Farbe 
+    val alarmItem        = Pult_Farbe 
     val alarmItem1       = FlorianBettLightStrip_Farbe
     
     FlorianNestMini_Lautstarke.sendCommand(70)
@@ -58,7 +58,7 @@ rule "Alarm Florian Abschaltung"
 when
     Item AlarmFlorian changed to OFF
 then
-    val alarmItem         = LEDStripsFL1_Farbe 
+    val alarmItem        = Pult_Farbe 
     val alarmItem1        = FlorianBettLightStrip_Farbe
     var TextString        = "Alarm Florian Abschaltung"
         

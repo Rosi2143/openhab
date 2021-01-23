@@ -1,0 +1,24 @@
+rule "Change Meteo State"
+when
+   Time cron "0 0 * * * ?"
+then
+    var TextString       = "Change Meteo State"
+    
+   
+    var MeteoStatus = Meteo.state.toString
+
+  
+    logInfo(TextString, MeteoStatus)  
+    
+            if (MeteoStatus=="1") {  
+                Meteo.sendCommand("5") 
+                logInfo(TextString, "Change to 5")  
+            }                      
+             
+            if (MeteoStatus=="5") {  
+                Meteo.sendCommand("1") 
+                logInfo(TextString, "Change to 1")  
+            }                      
+           
+end
+

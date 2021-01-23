@@ -7,7 +7,7 @@ then
   var TextString       = "Alarm Simon"
 
   logInfo(TextString, "Alarm wird eingeschaltet--------")
-SimonsNestMini_Lautstrke.sendCommand(70)
+SimonsNestMini_Lautstrke.sendCommand(30)
 SimonsNestMini_Fernbedienung.sendCommand(PLAY)
 SimonsNestMini_URIabspielen.sendCommand("http://192.168.1.92:8080/static/Daddy.mp3")
    
