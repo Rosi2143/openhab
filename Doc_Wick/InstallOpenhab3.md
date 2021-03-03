@@ -11,15 +11,31 @@ openhabian@openHABianDevice:~$ sudo apt install deconz
 sudo systemctl enable deconz
 sudo systemctl start deconz
 http://192.168.1.132/pwa/c
+Openhab login: ad14min, keypass
 
+# Install Openhab3, Kueche2
+Install Graphical GUI:
+raspi-configs
+Openhab username: thomas
 
 Add Phoscon GW Hue in openhab
+
+## Enable/disable phoscon gui
+sudo systemctl disable deconz-gui
+sudo systemctl stop deconz-gui
+sduo systemctl enable deconz
+
+
+### Remote usage
+ssh -X pi@192.168.1.92 "/usr/bin/deCONZ"
+
 
 # Create a backup
 ## Deconz
 Safed this directory kueche-raspi:/home/pi/.local/share/dresden-elektronik/deCONZ#
 to /home/computer/openhab
 
+## Backup openhab
 root@kueche-raspi:/usr/share/openhab# ./runtime/bin/backup 
                                          
 #########################################
@@ -38,4 +54,7 @@ Removing unnecessary files...
 Zipping folder...
 Removing temporary files...
 Success! Backup made in /var/lib/openhab/backups/openhab-backup-21_01_23-17_07_13.zip
+
+# Deconz logs
+ deCONZ --dbg-info=2 --dbg-zdp=1 --dbg-zcl=1 --db-aps=1 --dbg-http=1
 
