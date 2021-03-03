@@ -57,4 +57,4 @@ Success! Backup made in /var/lib/openhab/backups/openhab-backup-21_01_23-17_07_1
 
 # Deconz logs
  deCONZ --dbg-info=2 --dbg-zdp=1 --dbg-zcl=1 --db-aps=1 --dbg-http=1
-
+d
