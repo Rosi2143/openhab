@@ -1,0 +1,27 @@
+import org.openhab.core.model.script.ScriptServiceUtil
+import java.util.HashMap
+import java.util.ArrayList
+
+rule "another rule"
+when
+    Item Testitem changed
+then
+
+
+   val hex_code = "29C15A"
+   val dimVal =  Integer.parseInt(hex_code, 16) as Number
+   
+
+    logInfo("Hex",hex_code)
+    logInfo("Test",dimVal)	
+
+  val integer_value = 2736474
+// and here an additional example to convert an integer_value to hex_code string
+var String hex = Long.toHexString(integer_value);
+
+ logInfo("hex output",hex)
+ 
+	val String string2 = string1.substring(0,1)	
+	  logInfo("TEST", string2)
+   
+end

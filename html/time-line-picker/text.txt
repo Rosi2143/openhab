@@ -1,0 +1,2 @@
+https://gitlab.com/RNTs_3/openhab-timeline-picker/-/tree/openHAB3_oldRuleDSL
+http://192.168.1.92:8080/static/time-line-picker/index.html

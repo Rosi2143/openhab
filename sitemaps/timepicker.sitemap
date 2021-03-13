@@ -1,0 +1,5 @@
+sitemap demo label="example of timeline picker" {
+    Frame label="heating Example" {
+        Webview url="http://192.168.1.92:8080/static/time-line-picker/index.html?ip=192.168.1.92:8080&transferItem=TransferItem&yAxisLabel=1,2,3,4,5,6,7" height=14
+    }
+}

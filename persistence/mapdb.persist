@@ -1,0 +1,7 @@
+Strategies {
+  default = everyUpdate
+}
+
+Items {
+  gTimepicker*,Zeitschaltuhr1,Zeitschaltuhr2,Zeitschaltuhr3: strategy = everyChange, restoreOnStartup
+}

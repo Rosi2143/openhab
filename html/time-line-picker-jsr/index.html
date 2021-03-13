@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link href='css/roboto-fontfamily.css' rel="stylesheet">
+    <link rel="stylesheet" href="css/material.indigo-pink.min.css">
+    <script defer src="js/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/switchPointSet.css" media="screen" />
+  </head>
+  <body>
+  <div id="app" v-cloak>
+    <div class="widgetWrapper" :class="{widgetWrapperDark: darkMode}">
+      <div class="pickerToolbar">
+        <div class="legend mdl-grid">
+          <div class="legendItem mdl-cell mdl-cell--1-col"
+            v-for="(i,key) in switchStatesCount"
+            :key="key"
+            @click="setCurrentSwitchState(key)"
+          >
+            <div class="legendRec" :class="{currStateRec: currSwitchstate == key}" :style="{background: scaleValueColors[key]}"></div>
+            <span :class="{currStateFont: currSwitchstate == key}">{{switchStates[key]}}</span>
+          </div>
+        </div>
+        <div class="legendRight">
+          <div class="legendEvent" v-if="eventMode === true">
+            <div class="legendItemWrapper">
+              <i class="material-icons eventIcon">schedule</i>
+            </div>
+            <span class="labeltLegendRight">events</span>
+          </div>
+        </div>
+      </div>
+      <div class="stateChangedHint" v-if="(statesChanged == 1) && !daySetError">
+        <p>{{line12}}</p>
+        <p>{{line13}}</p>
+        <p>{{line14}}</p>
+        <div>
+          <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" @click="firstInitValueArray()">yes</button>
+          <span></span>
+          <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" @click="stateChangedAbort()">no</button>
+        </div>
+      </div>
+      <div class="stateChangedError" v-if="(statesChanged == 2) && !daySetError">
+        <p>{{line15}}</p>
+        <i class="material-icons">clear</i>
+      </div>
+      <div class="stateChangedError" v-if="daySetError">
+        <p>the call parameter are wrong</p>
+        <p>please contact your admin</p>
+        <i class="material-icons">clear</i>
+      </div>
+      <div v-if="(statesChanged == 0) && !daySetError">
+        <div id="contentWrapper">
+          <div class="pickerContent">
+            <div v-if="yAxis.length > 3" class="xAxis">
+              <span v-for="(item,key) in currTimeScale">{{currTimeScale[key]}}</span>
+            </div>
+            <div v-for="(i,key) in yAxis" class="scaleWrapper">
+              <span class="yAxis">{{yAxisLabel[key]}}</span>
+              <time-scale
+                :index-line="i"
+                :init-value="initValue"
+                :curr-Switchstate="currSwitchstate"
+                :scale-colors="scaleValueColors"
+                :event-mode="eventMode"
+                :zoom-factor="zoomFactor1"
+                :curr-time="currTime1"
+                class="scaleSet"
+              ></time-scale>
+            </div>
+            <div class="xAxis xaBottom">
+              <span v-for="(item,key) in currTimeScale">{{currTimeScale[key]}}</span>
+            </div>
+          </div>
+        <tl-inactive v-if="deactivation && !tl_active" :lang="currLang" @click="toggleDisable"></tl-inactive>
+        </div>
+        <div id="pickerFooter">
+          <div class="zoomSlider"
+            :class="[ (orientation == 'portrait') ? 'zoomSlider_port': 'zoomSlider_land' ]"
+            v-show="zoomVisible"
+          >
+            <div class="scaleZoom">
+              <input id="slider1" class="mdl-slider mdl-js-slider" v-model="zoomFactor" type="range" min="0" max="2" step="1" tabindex="0">
+              <div class="xAxis_zoom">
+                <span>x1</span>
+                <span>x3</span>
+                <span>x6</span>
+              </div>
+            </div>
+            <div class="timeRange" v-show="!((orientation == 'portrait') && zoomFactor == 0)">
+              <input class="mdl-slider mdl-js-slider" v-model="currTime" type="range" min="0" max="24" step="2" tabindex="0" :disabled="zoomFactor == 0">
+              <div class="xAxis_zoom  xAxis_firstLast">
+                <span v-for="(item,key) in xAxisTimeScale">{{xAxisTimeScale[key]}}</span>
+              </div>
+            </div>
+          </div>
+          <div id="footerButton">
+            <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" @click="setInterval()">
+              {{line9}}
+              <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+              </span>
+            </button>
+            <span class="space"></span>
+            <div id="deactivate" class="activation" @click="toggleDisable" v-if="deactivation && !secPrompt && tl_active">
+              <div>{{line3}}</div>
+            </div>
+            <button id="btn-secPrompt" class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" v-if="secPrompt" @click="saveInterval()">
+              {{line10}}
+              <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+              </span>
+            </button>
+            <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" v-if="secPrompt" @click="abort()">
+              {{line11}}
+              <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script language="javascript" type="text/javascript" src="js/vue.js"></script>
+  <script language="javascript" type="text/javascript" src="js/vue-resource.js"></script>
+  <script language="javascript" type="text/javascript" src="js/prefs.js"></script>
+  <script language="javascript" type="text/javascript" src="js/switchPointSet_jsr.js"></script>
+  </body>
+</html>
