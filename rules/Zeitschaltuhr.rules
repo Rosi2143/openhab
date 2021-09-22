@@ -33,7 +33,7 @@ import java.util.ArrayList
 // -------------------- part of config -----------------------------------------------------------------------
 
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(    
-    "Zeitschaltuhr1" -> newArrayList('demoItem1','HueLuTh_Farbe','BueroHue_Farbe'),
+    "Zeitschaltuhr1" -> newArrayList('demoItem1','HueLuTh_Farbe','HueBuero_Color'),
     "Zeitschaltuhr2" -> newArrayList('demoItem2'),
     "Zeitschaltuhr3" -> newArrayList('demoItem3')
 )

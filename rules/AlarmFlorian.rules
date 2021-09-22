@@ -9,7 +9,9 @@ then
     val alarmItem        = Pult_Farbe 
     val alarmItem1       = FlorianBettLightStrip_Farbe
     
-    FlorianNestMini_Lautstarke.sendCommand(70)
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Alarm Florian ein")
+    executeCommandLine("/etc/openhab/send-signal.sh","+41775346299 ","Alarm Florian ein")
+    FlorianNestMini_Lautstarke.sendCommand(20)
     FlorianNestMini_Fernbedienung.sendCommand(PLAY)
     FlorianNestMini_URIabspielen.sendCommand("http://192.168.1.92:8080/static/Fl_scooby_doo_4_rington.mp3")
 
