@@ -1,0 +1,41 @@
+rule "Temperatursensor1_NiedrigerBatteriestatus"
+when
+    Item Temperatursensor1_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Temperatursensor1_NiedrigerBatteriestatus")
+end
+
+rule "Temperatursensor2_NiedrigerBatteriestatus"
+when
+    Item Temperatursensor2_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Temperatursensor2_NiedrigerBatteriestatus")
+end
+
+rule "Temperatursensor3_NiedrigerBatteriestatus"
+when
+    Item Temperatursensor3_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Temperatursensor3_NiedrigerBatteriestatus")
+end
+
+rule "Temperatursensor4_NiedrigerBatteriestatus"
+when
+    Item Temperatursensor4_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Temperatursensor4_NiedrigerBatteriestatus")
+end
+
+rule "Temperatursensor5_NiedrigerBatteriestatus"
+when
+    Item Temperatursensor5_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Temperatursensor5_NiedrigerBatteriestatus")
+end
+
+rule "SW1Aquara_NiedrigerBatteriestatus"
+when
+    Item SW1Aquara_NiedrigerBatteriestatus changed from NULL to ON
+then       
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","SW1Aquara_NiedrigerBatteriestatus")
+end

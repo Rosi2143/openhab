@@ -1,0 +1,58 @@
+rule "SW17 Regel"
+when
+    Channel 'deconz:switch:5c6cc3c3:00158d00042726db010006:buttonevent' triggered
+then	
+       
+    //var actionName = receivedEvent.getEvent()
+    var actionName = receivedEvent  // .split("##")
+    
+    var TextString    = "Button SW17, Florian.rules"
+    var autoModeItem     = Pult_Farbe     as GenericItem
+    var autoModeItem_rgb = Pult_Farbe as GenericItem
+    var autoModeItem_dim = Pult_Farbe as GenericItem
+    var autoModeItem_rgb1 = FlorianBettLightStrip_Farbe as GenericItem
+   
+    var buffer = autoModeItem_rgb.state.toString.split(",")
+    var value = Integer.parseInt(buffer.get(2))
+    var status2 = autoModeItem_rgb.state.toString
+
+    logInfo("Button SW17", "Rule SW17_Flroian")
+    switch(actionName) {
+        case "1001": {
+           logInfo(TextString, "case 1001, Langer klick, schlafen")
+           autoModeItem_rgb.sendCommand("300,100,1")                                
+           autoModeItem_rgb1.sendCommand("300,100,1") 
+           //lorianBettLightStrip_Farbtemperatur.sendCommand(8)
+           //Pult_Farbtemperatur.sendCommand(8)
+        }
+        case "1002": {           
+            logInfo(TextString, "case 1002, Einfachklick, ein/aus") 
+              
+                             
+           if (value.toString=="0") {  
+                autoModeItem_rgb.sendCommand("310,70,70") 
+                autoModeItem_rgb1.sendCommand("310,70,70") 
+                logInfo(TextString, "Ausgeschaltet, schalte Lampe ein. Magenta.")  
+            }                      
+             
+           if (value.toString!="0"){  
+               autoModeItem_rgb.sendCommand("0,0,0") 
+               autoModeItem_rgb1.sendCommand("0,0,0") 
+               logInfo(TextString, "Eingeschaltet, schalte Lampe aus")  
+           }
+           
+        
+             
+                        
+        }
+        
+        case "1004": {
+            logInfo(TextString, "case 1004, Doppelklick, blau")   
+            autoModeItem_rgb.sendCommand("245,69,70") 
+            autoModeItem_rgb1.sendCommand("245,69,70") 
+       
+        }
+    }    
+        
+end
+
