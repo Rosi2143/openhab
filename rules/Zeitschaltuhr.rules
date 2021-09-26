@@ -1,0 +1,282 @@
+import org.openhab.core.model.script.ScriptServiceUtil
+import java.util.HashMap
+import java.util.ArrayList
+
+
+// timeline/ timepicker control
+// https://gitlab.com/RNTs_3/openhab-timeline-picker/-/tree/openHAB3_oldRuleDSL
+// version 0.8.1
+// ToSe 
+//
+// init values & customize for you own enviroment
+// -----------------------------------------------------------------------------------------------------------
+//
+//
+// requirements: MapDB, JSONpath transformation
+// -----------------------------------------------------------------------------------------------------------
+//  Group  gTimepicker
+//  Group  gTimepickerObserver
+//  String TimelineHelper                 "[%s]"
+//  String TransferItem_XX                "xxxxxx [%s]"                                         (gTimepicker)
+//
+// data structure
+// -----------------------------------------------------------------------------------------------------------
+// val HashMap<String,  ArrayList<String>> timePicker = newHashMap(
+//     "TransferItem1" -> newArrayList('BueroHue_Farbe2'),                // enum all items to control
+//     "TransferItem2" -> newArrayList('BueroHue_Farbe','demoItem1')
+//                                                                // enum all TransferItems
+//     // you control as many widgets as you need
+// )
+//
+//
+
+// -------------------- part of config -----------------------------------------------------------------------
+
+val HashMap<String,ArrayList<String>> timePicker = newHashMap(    
+    "Zeitschaltuhr1" -> newArrayList('demoItem1','HueLuTh_Farbe','HueBuero_Color'),
+    "Zeitschaltuhr2" -> newArrayList('demoItem2'),
+    "Zeitschaltuhr3" -> newArrayList('demoItem3')
+)
+
+// -------------------- end of config ------------------------------------------------------------------------
+
+
+// -------------------- don't change anything ---------------------------------------------------------------
+val HashMap<String,String> oldStates = newHashMap()
+
+////////// persist switch states in helper item
+val Procedures$Procedure2<String,String> persistSwitchState = [ currSwitchPlanName, newState |
+
+  // It's pretty weird, but it works.
+  // this code substitue the last switched state from a single picker in the data strucktur
+  // inside the TimelineHelper item and saved the new value
+
+  var helpData_result = ''
+  var helpData = TimelineHelper.state.toString
+  if (TimelineHelper.state != NULL) {
+    var posIndex1 = (helpData).indexOf('"' + currSwitchPlanName + '":{"inactiveLastValue": ')
+    if (posIndex1 != (-1)) {
+      // key exist in the data strucktur
+      var lenKey = ('"' + currSwitchPlanName + '":{"inactiveLastValue": ').length
+      var helpData_firstPart = helpData.substring(0,posIndex1 + lenKey + 1)
+      var helpData_prevValue = helpData.substring(posIndex1 + lenKey + 1)
+      var posIndex2 = helpData_prevValue.indexOf('"')
+      var helpData_lastPart = helpData_prevValue.substring(posIndex2)
+      helpData_result = helpData_firstPart + newState.toString + helpData_lastPart
+    } else {
+      // key doesn't exist in the data strucktur, append this at the end
+      var lenHelpData = helpData.length
+      if (lenHelpData == 0) {
+        helpData_result = '{"'
+      } else {
+        helpData = helpData.substring(0,lenHelpData-1)
+        helpData_result = helpData + ',"'
+      }
+      helpData_result = helpData_result + currSwitchPlanName + '":{"inactiveLastValue": "' + newState.toString + '"}}'
+    }
+    TimelineHelper.sendCommand(helpData_result)
+  }	
+]
+
+////////// rules ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+rule "timeLinePicker1"
+when
+  Member of gTimepicker changed or
+  //Time cron "0/15 * * ? * * *" or            // for debug, trigger eatch 15 seconds
+  Time cron "0 0/15 * 1/1 * ? *"
+then
+  var Number currTimeInterval = ((now.getHour()*60 + now.getMinute())/15).intValue
+  var Number currDay = now.getDayOfWeek.getValue()
+
+//  logInfo("timeLine picker", "hello 1")
+//  logInfo("current intervall", currTimeInterval.toString)
+  
+  
+  gTimepicker.members.forEach[ currSwitchPlan |
+    if ((currSwitchPlan.state !== NULL) && (timePicker.keySet().contains(currSwitchPlan.name))) {
+    logInfo("========================", "========================================================================")
+//    logInfo("========================", "Current Switch Plan")
+//    logInfo("========================", currSwitchPlan.name)
+    
+      var String currKey = currDay.toString
+      var String timeLineActiv = (transform("JSONPATH", "$.config.active", currSwitchPlan.state.toString))
+
+//      logInfo("Variable timeLineActiv:", timeLineActiv)     
+                   
+
+      
+      
+      
+     //val String WholeSwitchPlan = (transform("JSONPATH", "$", currSwitchPlan.state.toString))
+     //logInfo("== WholeSwitchPlan", WholeSwitchPlan)
+     
+//logInfo("timeLine picker", "hello 6")
+
+     // Loop over the data, if rule is active
+      if (timeLineActiv == "true") {
+//        logInfo("timeLineActiv is false case", "false")        
+//    logInfo("========================", currSwitchPlan.name + " ist aktiv")
+//                logInfo("timeLineActiv is false case", "Zeitschaltuhr aktiv")        
+        
+
+            
+//logInfo("timeLine picker", "hello 9")        
+        
+        // Get data from today
+        val String dataSetOfDay = transform("JSONPATH", "$." + currKey, currSwitchPlan.state.toString)
+        
+//        logInfo("dataSetOfDay", dataSetOfDay)  
+        
+                        
+    //    logInfo("timeLine picker", "hello 10")
+        
+        
+   
+        
+          // is it an event picker or not
+          var String event = (transform("JSONPATH", "$.config.event", currSwitchPlan.toString))
+          
+  //           logInfo("timeLine picker", "hello 11")
+          
+          // get the states, for example ON, OFF
+         var String SwitchStates = (transform("JSONPATH", "$.config.states", currSwitchPlan.state.toString))
+         SwitchStates = SwitchStates.substring(1,SwitchStates.length - 1)
+         
+
+         
+         
+      
+         
+         var String SwitchStates0 = SwitchStates.split(',').get(0).trim
+         // remove the first and the last "
+         SwitchStates0=SwitchStates0.substring(1,SwitchStates0.length - 1)
+
+          
+         var String SwitchStates1 = SwitchStates.split(',').get(1).trim
+         SwitchStates1=SwitchStates1.substring(1,SwitchStates1.length - 1)
+          
+//          logInfo("Possible Switch States: ", SwitchStates)
+//                    logInfo("Comand for 0", SwitchStates0)
+//          logInfo("Comand for 1", SwitchStates1)
+          
+          
+          var String StateCurrTimeInterval = (dataSetOfDay.split(',').get(currTimeInterval)).trim
+          //logInfo("==== StateCurrTimeInterval: ", StateCurrTimeInterval)
+          //logInfo("=====================================", "111111111")
+          
+          var String newStateString=""
+          
+          
+          if ( StateCurrTimeInterval == "1" ) {
+                       newStateString = SwitchStates1
+        //                logInfo("=====================================", "state is 1")
+          } else {
+                       newStateString = SwitchStates0
+         //              logInfo("=====================================", "state is not 1")
+          }
+              
+          
+//          logInfo("==== StateCurrTimeInterval: ", newStateString)
+//                logInfo("=====================================", "22222222222222222222")
+
+//          logInfo("=======set this state:", newStateString)
+          logInfo("========================", currSwitchPlan.name + " ist aktiv. Setze bei ITEMS diesen Status: " + newStateString + ". Zeitintervall: " + currTimeInterval.toString)
+//                logInfo("=====================================", "3")
+  //        logInfo("==== StateCurrTimeInterval: ", StateCurrTimeInterval)
+  //              logInfo("=====================================", "4")
+
+          var ArrayList<String> itemToSwitch = new ArrayList(timePicker.get(currSwitchPlan.name))
+
+//   logInfo("timeLine picker", "hello 12")
+ //     logInfo("switch state", switchStates)
+   
+          // extract switch states of dataset; jsonpath is realy unflexible so string operation are used
+           //          var String dataSetOfDay = (transform("JSONPATH", "$." + countScale.toString, currSwitchPlan))
+          
+          
+          
+          //var String[] switchPlanOfDay = (dataSetOfDay.substring(dataSetOfDay.indexOf('value') + 7, dataSetOfDay.length - 2)).split(',')
+             
+//             logInfo("timeLine picker", "hello 13")
+             
+             
+          if (!(itemToSwitch.size() == 1 && "".equals(itemToSwitch.get(0)))) {
+          
+  //                     logInfo("timeLine picker", "hello 14")
+                  
+                       
+            itemToSwitch.forEach [ iTS |
+              var GenericItem currItem = ScriptServiceUtil.getItemRegistry.getItem(iTS) as GenericItem
+              //var String newStateString = switchPlanOfDay.get(currTimeInterval)
+              
+               //logInfo("newItem State", newStateString )              
+              
+              var String newState = ''
+
+// logInfo("Item to switch", currItem.name )
+// logInfo("timeLine picker", "hello 15")
+
+              if (event == 'true') {
+                var Boolean itemInGroupHit = false
+                gTimepickerObserver.getMembers().filter[ i | i == currItem].forEach[ i | 
+                  itemInGroupHit = true
+                ]
+                if (newStateString != '-1') {
+                  if (!itemInGroupHit) {
+                    //save state from item befor event
+                    oldStates.put(iTS,currItem.state.toString)
+                    gTimepickerObserver.addMember(currItem)
+                  }
+                  newState = switchStates.get(Integer::parseInt(newStateString))
+                  // send only commands when current state differenced from new state
+                  if (currItem.state.toString != newState) {
+                    currItem.sendCommand(newState.toString)
+                    persistSwitchState.apply(currSwitchPlan.name, newState)
+                  }
+                } else {
+                  if (itemInGroupHit) {
+                    gTimepickerObserver.removeMember(currItem)
+                    //restore old state for item
+                    newState = oldStates.get(iTS)
+                    oldStates.remove(iTS)
+                    // send only commands when current state differenced from new state
+                    if (currItem.state.toString != newState) {
+                      currItem.sendCommand(newState.toString)
+                      persistSwitchState.apply(currSwitchPlan.name, newState)
+                    }
+                  }
+                }
+              } else {
+// logInfo("timeLine picker", "hello 16")              
+                //newState = switchStates.get(Integer::parseInt(newStateString))
+                 //logInfo("Switch State", newState)
+                
+                // send only commands when current state differenced from new state
+                if (currItem.state.toString != newStateString) {
+                 logInfo("Item to switch", currItem.name + ".sendCommend(" + newStateString + ")" )                 
+                 //logInfo("== set new state", newStateString )
+                 
+                  currItem.sendCommand(newStateString)
+                  persistSwitchState.apply(currSwitchPlan.name, newStateString)
+                } else {
+                      logInfo("Item to switch", currItem.name + " has already state " + newStateString + ". nothing done." )    
+                }
+              }
+            ]
+          }
+        
+      } else {
+//      logInfo("timeLineActiv is false case", "Zeitschaltuhr inaktiv")    
+        logInfo("========================", currSwitchPlan.name + " ist inaktiv")
+      }
+    }
+  ]
+end
+
+rule "timeline picker -systemstart"
+when
+  System started
+then
+  TimelineHelper.sendCommand("")
+  logInfo("timeLine picker", "init timelinehelper item")
+end

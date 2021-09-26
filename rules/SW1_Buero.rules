@@ -11,8 +11,8 @@ then
     //var actionName = receivedEvent.getEvent()
     var actionName = receivedEvent  // .split("##")
     
-    val autoModeItem     = BueroHue_Farbtemperatur as GenericItem
-    val autoModeItem_rgb = BueroHue_Farbe as GenericItem
+    val autoModeItem     = HueBuero_ColorTemperature as GenericItem
+    val autoModeItem_rgb = HueBuero_Color as GenericItem
 
     var buffer = autoModeItem_rgb.state.toString.split(",")
     var value = Integer.parseInt(buffer.get(2))
@@ -39,6 +39,15 @@ then
            }
            
         }
+           case "1003": {	
+           logInfo(TextString, "case 1003, langer klick")   
+           if (value.toString=="0") {  
+                autoModeItem_rgb.sendCommand("0,0,70") 
+                logInfo(TextString, "Ausgeschaltet, schalte Lampe ein")  
+            }  
+            autoModeItem_rgb.sendCommand("70,70,70") 
+    
+        } 
         case "1004": {	
            logInfo(TextString, "case 1004, Doppelklick")   
            if (value.toString=="0") {  
@@ -60,7 +69,8 @@ when
     Item AlarmBuero changed to ON
 then
     var TextString       = "Alarm Büro"
-    val alarmItem        = BueroHue_Farbe 
+    val alarmItem        = HueBuero_Color
+ 
     
 if(TimerBu !== null) {
     TimerBu.cancel
@@ -100,7 +110,7 @@ rule "Alarm Büro Abschaltung"
 when
     Item AlarmBuero changed to OFF
 then
-   val alarmItem         = BueroHue_Farbe 
+   val alarmItem         = HueBuero_Color
     var TextString       = "Alarm Büro Abschaltung"
     var HSBType currentState
     currentState = alarmItem.state as HSBType

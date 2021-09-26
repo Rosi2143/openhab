@@ -1,0 +1,14 @@
+Group   gTimepicker
+Group  gTimepickerObserver
+
+String  Zeitschaltuhr1                "[%s]"          (gTimepicker)
+String  Zeitschaltuhr2                "[%s]"          (gTimepicker)
+String  Zeitschaltuhr3                "[%s]"          (gTimepicker)
+String TimelineHelper  "[%s]"
+
+//Switch  TransferItem1  (gTimepicker)
+Switch  demoItem1  (gTimepicker)
+Switch  demoItem2  (gTimepicker)
+Switch  demoItem3  (gTimepicker)
+
+

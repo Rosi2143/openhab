@@ -1,0 +1,8 @@
+rule "Send message via signal thomas"
+       when
+           Item AlarmBuero changed to ON
+       then   
+            executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Alarm Thomas ein")
+        
+           
+ end

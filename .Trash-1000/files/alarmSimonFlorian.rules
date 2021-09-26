@@ -1,6 +1,0 @@
-rule "Alarm Simon1"
-when
-    Item AlarmSimon changed to ON
-then
-    logInfo("first start")  
-end
