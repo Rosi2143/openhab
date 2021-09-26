@@ -11,31 +11,15 @@ openhabian@openHABianDevice:~$ sudo apt install deconz
 sudo systemctl enable deconz
 sudo systemctl start deconz
 http://192.168.1.132/pwa/c
-Openhab login: ad14min, keypass
 
-# Install Openhab3, Kueche2
-Install Graphical GUI:
-raspi-configs
-Openhab username: thomas
 
 Add Phoscon GW Hue in openhab
-
-## Enable/disable phoscon gui
-sudo systemctl disable deconz-gui
-sudo systemctl stop deconz-gui
-sduo systemctl enable deconz
-
-
-### Remote usage
-ssh -X pi@192.168.1.92 "/usr/bin/deCONZ"
-
 
 # Create a backup
 ## Deconz
 Safed this directory kueche-raspi:/home/pi/.local/share/dresden-elektronik/deCONZ#
 to /home/computer/openhab
 
-## Backup openhab
 root@kueche-raspi:/usr/share/openhab# ./runtime/bin/backup 
                                          
 #########################################
@@ -55,24 +39,13 @@ Zipping folder...
 Removing temporary files...
 Success! Backup made in /var/lib/openhab/backups/openhab-backup-21_01_23-17_07_13.zip
 
-# Deconz logs
- deCONZ --dbg-info=2 --dbg-zdp=1 --dbg-zcl=1 --db-aps=1 --dbg-http=1
-
 Adding time picker
-<<<<<<< HEAD
 added JSONpath aand Map Transformation, dd on under Einstellungen, Transformations
-=======
-https://gitlab.com/RNTs_3/openhab-timeline-picker/-/tree/openHAB3_oldRuleDSL
->>>>>>> c7f3ae04f7870c175172fcd236db186b297b3ecd
 http://192.168.1.92:8080/static/time-line-picker/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=en&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
 
 http://192.168.2.100:8080/static/time-line-picker/index.html?ip=192.168.2.100:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=en&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
 
-<<<<<<< HEAD
 https://gitlab.com/RNTs_3/openhab-timeline-picker/-/tree/develop-migrationToJSR223_javascript
 http://192.168.1.92:8080/static/time-line-picker-jsr/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1
 http://192.168.1.92:8080/static/time-line-picker-jsr/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&lang=de
-=======
-funktionert:
-http://192.168.1.92:8080/static/time-line-picker/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=de&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
->>>>>>> c7f3ae04f7870c175172fcd236db186b297b3ecd
+http://192.168.1.92:8080/static/time-line-picker-jsr/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=en&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
