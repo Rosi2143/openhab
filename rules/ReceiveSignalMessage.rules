@@ -20,7 +20,7 @@ then
     var sname   = "unknown signal number: " + signal_source.state.toString
 
     val String strPhoneNumbers = PhoneNumbers.get(signal_source.state.toString)
-    logInfo("Variable timeLineActiv:", timeLineActiv) 
+    logInfo("Variable strPhoneNumbers:", strPhoneNumbers) 
 
     if (signal_source.state.toString == "+41792279112") {  sname="Thomas"   }    
     if (signal_source.state.toString == "+41775346299") {  sname="Florian"  }    
