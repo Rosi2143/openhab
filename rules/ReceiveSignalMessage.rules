@@ -1,0 +1,7 @@
+rule "Signal message changed"
+when
+    Item signal_source received command
+then       
+    
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","habe eine meldung bekommen")
+end
