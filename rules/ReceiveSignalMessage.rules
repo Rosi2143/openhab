@@ -1,11 +1,10 @@
 import java.util.HashMap
 
 var HashMap<String, Object> PhoneNumbers = newHashMap(
-        "Thomas"   -> "+41792279112",
-        "Luzia"    -> "+41793121722",
-        "Simon"    -> "+41767224988",
-        "+41792279112" -> "thxxx", 
-        "Florian"  -> "+41775346299"
+        "+41792279112"    ->  "Thomas",
+        "+41793121722"    ->  "Luzia",
+        "+41767224988"    ->  "Simon",
+        "+41775346299"    ->  "Florian"        
 ) as HashMap
 
 rule "Signal message changed"
@@ -19,8 +18,8 @@ then
     var smsg    = signal_message.state  
     var sname   = "unknown signal number: " + signal_source.state.toString
 
-    val String strPhoneNumbers = PhoneNumbers.get(signal_source.state.toString)
-    logInfo("Variable strPhoneNumbers:", strPhoneNumbers) 
+    val String strPhoneUser = PhoneNumbers.get(signal_source.state.toString)
+    logInfo("Variable strPhoneUser:", strPhoneUser) 
 
     if (signal_source.state.toString == "+41792279112") {  sname="Thomas"   }    
     if (signal_source.state.toString == "+41775346299") {  sname="Florian"  }    
@@ -29,7 +28,7 @@ then
  
 
     
-    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Got message:" + smsg.toString + " from " + sname)
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Got message:" + smsg.toString + " from " + strPhoneUser)
 
 
 
