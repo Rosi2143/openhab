@@ -40,6 +40,11 @@ Removing temporary files...
 Success! Backup made in /var/lib/openhab/backups/openhab-backup-21_01_23-17_07_13.zip
 
 Adding time picker
+added JSONpath aand Map Transformation, dd on under Einstellungen, Transformations
 http://192.168.1.92:8080/static/time-line-picker/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=en&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
 
 http://192.168.2.100:8080/static/time-line-picker/index.html?ip=192.168.2.100:8080&transferItem=TransferItem1&states=0,1,2,3&yAxisLabel=1,2,3,4,5,67&lang=en&event=no&dark=no&zoom=force&colorset=555E7B,B7D968,B576AD,E04644,FDE47F,7CCCE5,D486E8&deactivation=true
+
+https://gitlab.com/RNTs_3/openhab-timeline-picker/-/tree/develop-migrationToJSR223_javascript
+http://192.168.1.92:8080/static/time-line-picker-jsr/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1
+http://192.168.1.92:8080/static/time-line-picker-jsr/index.html?ip=192.168.1.92:8080&transferItem=TransferItem1&lang=de
