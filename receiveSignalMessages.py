@@ -1,7 +1,8 @@
 def msgRcv (timestamp, source, groupID, message, attachments):
    print ("Message", message, "source:",source)
    #print ("Message", message, "received in group", signal.getGroupName (groupID))
-   openhab.get_item('AlarmBuero').command('ON')
+   openhab.get_item('signal_source').command(source)
+   openhab.get_item('signal_message').command(message)
    return
 
 from pydbus import SystemBus
