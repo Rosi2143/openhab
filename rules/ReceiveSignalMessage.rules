@@ -5,8 +5,8 @@ then
     val signal_message      = signal_message as GenericItem
     val signal_source       = signal_source as GenericItem
 
-    var smsg    = signal_message.state
-    #var ssource = signal_source.state
+
+    var smsg    = signal_message.state  
     var sname   = "unknown signal number: " + signal_source.state.toString
 
     if (signal_source.state..toString == "+41792279112") {  sname="Thomas"   }    
@@ -15,4 +15,11 @@ then
     if (signal_source.state..toString == "+41793121722") {  sname="Luzia"    }    
     
     executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Got message:" + smsg.toString + " from " + sname)
+
+
+
+
+
+
+
 end
