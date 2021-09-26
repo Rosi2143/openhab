@@ -9,10 +9,10 @@ then
     var smsg    = signal_message.state  
     var sname   = "unknown signal number: " + signal_source.state.toString
 
-    if (signal_source.state..toString == "+41792279112") {  sname="Thomas"   }    
-    if (signal_source.state..toString == "+41775346299") {  sname="Florian"  }    
-    if (signal_source.state..toString == "+41767224988") {  sname="Simon"    }    
-    if (signal_source.state..toString == "+41793121722") {  sname="Luzia"    }    
+    if (signal_source.state.toString == "+41792279112") {  sname="Thomas"   }    
+    if (signal_source.state.toString == "+41775346299") {  sname="Florian"  }    
+    if (signal_source.state.toString == "+41767224988") {  sname="Simon"    }    
+    if (signal_source.state.toString == "+41793121722") {  sname="Luzia"    }    
     
     executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Got message:" + smsg.toString + " from " + sname)
 
