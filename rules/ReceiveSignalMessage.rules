@@ -1,0 +1,12 @@
+rule "Signal message changed"
+when
+    Item signal_source received command
+then       
+    val signal_message      = signal_message as GenericItem
+    val signal_source       = signal_source as GenericItem
+
+    var smsg    = signal_message.state
+    var ssource = signal_source.state
+
+    executeCommandLine("/etc/openhab/send-signal.sh","+41792279112 ","Got message:" + smsg.toString + " from " + ssource.toString)
+end
